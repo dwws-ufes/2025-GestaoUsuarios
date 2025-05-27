@@ -1,0 +1,25 @@
+# Add any directories, files, or patterns you don't want to be tracked by version control
+
+# MacOS
+.DS_Store
+
+# LaTeX
+*.aux
+*.bbl
+*.bit
+*.blg
+*.brf
+*.dvi
+*.glo
+*.idx
+*.ilg
+*.ind
+*.lof
+*.log
+*.lot
+*.out
+*.toc
+*.upa
+*.synctex.gz
+*.pdf
+*.out.ps

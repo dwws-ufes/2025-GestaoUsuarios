@@ -1,0 +1,40 @@
+% ==============================================================================
+% Projeto de Sistema - Nome do Aluno
+% Capítulo 2 - Plataforma de Desenvolvimento
+% ==============================================================================
+\chapter{Plataforma de Desenvolvimento}
+\label{sec-plataforma}
+\vspace{-1cm}
+
+Esta seção apresenta a plataforma de implementação adotada para o desenvolvimento do sistema \emph{SAGUP - Sistema de Administração e Gestão de Usuários e Permissões}. A arquitetura do sistema está baseada em um modelo cliente-servidor, com frontend desenvolvido em \textbf{Vue.js} e backend construído em \textbf{C\#}, utilizando o framework \textbf{ASP.NET Core}. A persistência de dados será feita através de um banco de dados relacional \textbf{SQLite}, com uso do \textbf{Entity Framework Core} para mapeamento objeto-relacional.
+
+\begin{table}[H]
+\centering
+\caption{Plataforma de Desenvolvimento e Tecnologias Utilizadas}
+\label{tabela-plataforma}
+\begin{tabular}{|p{4.5cm}|p{7.5cm}|}
+\hline
+\textbf{Camada} & \textbf{Tecnologia / Ferramenta} \\
+\hline
+Frontend & Vue.js (versão 3), Quasar Framework \\
+\hline
+Backend & ASP.NET Core (C\#), .NET 7 \\
+\hline
+Persistência de Dados & SQLite \\
+\hline
+ORM & Entity Framework Core \\
+\hline
+API de Comunicação & RESTful APIs com JSON \\
+\hline
+Controle de Versão & GitHub \\
+\hline
+Gerenciamento de Dependências & NuGet (.NET), NPM (Node.js) \\
+\hline
+Ambiente de Desenvolvimento & Visual Studio, VS Code \\
+\hline
+Containerização (opcional) & Docker \\
+\hline
+\end{tabular}
+\end{table}
+
+A escolha dessas tecnologias visa garantir modernidade, escalabilidade, segurança e manutenibilidade para o sistema. O uso de Vue.js proporciona uma interface rica e reativa, enquanto o backend em C\# com ASP.NET Core oferece robustez e alto desempenho para a lógica de negócios e operações com dados.
