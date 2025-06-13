@@ -1,0 +1,6 @@
+@SAGUP_HostAddress = http://localhost:5051
+
+GET {{SAGUP_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

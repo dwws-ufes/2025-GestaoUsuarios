@@ -1,0 +1,15 @@
+E:\Mestrado\ProgramaçãoWeb\git\2025-GestaoUsuarios\src\backend\UsersManager.Data\bin\Debug\net8.0\UsersManager.Data.deps.json
+E:\Mestrado\ProgramaçãoWeb\git\2025-GestaoUsuarios\src\backend\UsersManager.Data\bin\Debug\net8.0\UsersManager.Data.runtimeconfig.json
+E:\Mestrado\ProgramaçãoWeb\git\2025-GestaoUsuarios\src\backend\UsersManager.Data\bin\Debug\net8.0\UsersManager.Data.dll
+E:\Mestrado\ProgramaçãoWeb\git\2025-GestaoUsuarios\src\backend\UsersManager.Data\bin\Debug\net8.0\UsersManager.Data.pdb
+E:\Mestrado\ProgramaçãoWeb\git\2025-GestaoUsuarios\src\backend\UsersManager.Data\obj\Debug\net8.0\UsersManager.Data.csproj.AssemblyReference.cache
+E:\Mestrado\ProgramaçãoWeb\git\2025-GestaoUsuarios\src\backend\UsersManager.Data\obj\Debug\net8.0\UsersManager.Data.GeneratedMSBuildEditorConfig.editorconfig
+E:\Mestrado\ProgramaçãoWeb\git\2025-GestaoUsuarios\src\backend\UsersManager.Data\obj\Debug\net8.0\UsersManager.Data.AssemblyInfoInputs.cache
+E:\Mestrado\ProgramaçãoWeb\git\2025-GestaoUsuarios\src\backend\UsersManager.Data\obj\Debug\net8.0\UsersManager.Data.AssemblyInfo.cs
+E:\Mestrado\ProgramaçãoWeb\git\2025-GestaoUsuarios\src\backend\UsersManager.Data\obj\Debug\net8.0\UsersManager.Data.csproj.CoreCompileInputs.cache
+E:\Mestrado\ProgramaçãoWeb\git\2025-GestaoUsuarios\src\backend\UsersManager.Data\obj\Debug\net8.0\UsersManager.Data.sourcelink.json
+E:\Mestrado\ProgramaçãoWeb\git\2025-GestaoUsuarios\src\backend\UsersManager.Data\obj\Debug\net8.0\UsersManager.Data.dll
+E:\Mestrado\ProgramaçãoWeb\git\2025-GestaoUsuarios\src\backend\UsersManager.Data\obj\Debug\net8.0\refint\UsersManager.Data.dll
+E:\Mestrado\ProgramaçãoWeb\git\2025-GestaoUsuarios\src\backend\UsersManager.Data\obj\Debug\net8.0\UsersManager.Data.pdb
+E:\Mestrado\ProgramaçãoWeb\git\2025-GestaoUsuarios\src\backend\UsersManager.Data\obj\Debug\net8.0\UsersManager.Data.genruntimeconfig.cache
+E:\Mestrado\ProgramaçãoWeb\git\2025-GestaoUsuarios\src\backend\UsersManager.Data\obj\Debug\net8.0\ref\UsersManager.Data.dll

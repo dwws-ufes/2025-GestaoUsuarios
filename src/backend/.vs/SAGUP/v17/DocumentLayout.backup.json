@@ -1,0 +1,613 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Mestrado\\Programa\u00E7\u00E3oWeb\\git\\2025-GestaoUsuarios\\src\\backend\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{8EB29286-644B-4DC3-B506-97E0B4500FE5}|UsersManager.Application\\UsersManager.Application.csproj|c:\\mestrado\\programa\u00E7\u00E3oweb\\git\\2025-gestaousuarios\\src\\backend\\usersmanager.application\\services\\usuarioservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8EB29286-644B-4DC3-B506-97E0B4500FE5}|UsersManager.Application\\UsersManager.Application.csproj|solutionrelative:usersmanager.application\\services\\usuarioservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8EB29286-644B-4DC3-B506-97E0B4500FE5}|UsersManager.Application\\UsersManager.Application.csproj|c:\\mestrado\\programa\u00E7\u00E3oweb\\git\\2025-gestaousuarios\\src\\backend\\usersmanager.application\\services\\perfilservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8EB29286-644B-4DC3-B506-97E0B4500FE5}|UsersManager.Application\\UsersManager.Application.csproj|solutionrelative:usersmanager.application\\services\\perfilservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1ADC1D19-A8A0-4914-BF6C-F13ED6B778EE}|UsersManager.Data\\UsersManager.Data.csproj|c:\\mestrado\\programa\u00E7\u00E3oweb\\git\\2025-gestaousuarios\\src\\backend\\usersmanager.data\\repositories\\usuariorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1ADC1D19-A8A0-4914-BF6C-F13ED6B778EE}|UsersManager.Data\\UsersManager.Data.csproj|solutionrelative:usersmanager.data\\repositories\\usuariorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1ADC1D19-A8A0-4914-BF6C-F13ED6B778EE}|UsersManager.Data\\UsersManager.Data.csproj|c:\\mestrado\\programa\u00E7\u00E3oweb\\git\\2025-gestaousuarios\\src\\backend\\usersmanager.data\\repositories\\repository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1ADC1D19-A8A0-4914-BF6C-F13ED6B778EE}|UsersManager.Data\\UsersManager.Data.csproj|solutionrelative:usersmanager.data\\repositories\\repository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1ADC1D19-A8A0-4914-BF6C-F13ED6B778EE}|UsersManager.Data\\UsersManager.Data.csproj|c:\\mestrado\\programa\u00E7\u00E3oweb\\git\\2025-gestaousuarios\\src\\backend\\usersmanager.data\\repositories\\acessorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1ADC1D19-A8A0-4914-BF6C-F13ED6B778EE}|UsersManager.Data\\UsersManager.Data.csproj|solutionrelative:usersmanager.data\\repositories\\acessorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8EB29286-644B-4DC3-B506-97E0B4500FE5}|UsersManager.Application\\UsersManager.Application.csproj|c:\\mestrado\\programa\u00E7\u00E3oweb\\git\\2025-gestaousuarios\\src\\backend\\usersmanager.application\\controllers\\usuariocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8EB29286-644B-4DC3-B506-97E0B4500FE5}|UsersManager.Application\\UsersManager.Application.csproj|solutionrelative:usersmanager.application\\controllers\\usuariocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8EB29286-644B-4DC3-B506-97E0B4500FE5}|UsersManager.Application\\UsersManager.Application.csproj|c:\\mestrado\\programa\u00E7\u00E3oweb\\git\\2025-gestaousuarios\\src\\backend\\usersmanager.application\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8EB29286-644B-4DC3-B506-97E0B4500FE5}|UsersManager.Application\\UsersManager.Application.csproj|solutionrelative:usersmanager.application\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8EB29286-644B-4DC3-B506-97E0B4500FE5}|UsersManager.Application\\UsersManager.Application.csproj|c:\\mestrado\\programa\u00E7\u00E3oweb\\git\\2025-gestaousuarios\\src\\backend\\usersmanager.application\\dtos\\perfildto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8EB29286-644B-4DC3-B506-97E0B4500FE5}|UsersManager.Application\\UsersManager.Application.csproj|solutionrelative:usersmanager.application\\dtos\\perfildto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1ADC1D19-A8A0-4914-BF6C-F13ED6B778EE}|UsersManager.Data\\UsersManager.Data.csproj|c:\\mestrado\\programa\u00E7\u00E3oweb\\git\\2025-gestaousuarios\\src\\backend\\usersmanager.data\\entities\\usuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1ADC1D19-A8A0-4914-BF6C-F13ED6B778EE}|UsersManager.Data\\UsersManager.Data.csproj|solutionrelative:usersmanager.data\\entities\\usuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1ADC1D19-A8A0-4914-BF6C-F13ED6B778EE}|UsersManager.Data\\UsersManager.Data.csproj|c:\\mestrado\\programa\u00E7\u00E3oweb\\git\\2025-gestaousuarios\\src\\backend\\usersmanager.data\\entities\\perfil.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1ADC1D19-A8A0-4914-BF6C-F13ED6B778EE}|UsersManager.Data\\UsersManager.Data.csproj|solutionrelative:usersmanager.data\\entities\\perfil.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1ADC1D19-A8A0-4914-BF6C-F13ED6B778EE}|UsersManager.Data\\UsersManager.Data.csproj|c:\\mestrado\\programa\u00E7\u00E3oweb\\git\\2025-gestaousuarios\\src\\backend\\usersmanager.data\\repositories\\perfilrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1ADC1D19-A8A0-4914-BF6C-F13ED6B778EE}|UsersManager.Data\\UsersManager.Data.csproj|solutionrelative:usersmanager.data\\repositories\\perfilrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8EB29286-644B-4DC3-B506-97E0B4500FE5}|UsersManager.Application\\UsersManager.Application.csproj|c:\\mestrado\\programa\u00E7\u00E3oweb\\git\\2025-gestaousuarios\\src\\backend\\usersmanager.application\\controllers\\perfilcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8EB29286-644B-4DC3-B506-97E0B4500FE5}|UsersManager.Application\\UsersManager.Application.csproj|solutionrelative:usersmanager.application\\controllers\\perfilcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1ADC1D19-A8A0-4914-BF6C-F13ED6B778EE}|UsersManager.Data\\UsersManager.Data.csproj|c:\\mestrado\\programa\u00E7\u00E3oweb\\git\\2025-gestaousuarios\\src\\backend\\usersmanager.data\\repositories\\permissaorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1ADC1D19-A8A0-4914-BF6C-F13ED6B778EE}|UsersManager.Data\\UsersManager.Data.csproj|solutionrelative:usersmanager.data\\repositories\\permissaorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1ADC1D19-A8A0-4914-BF6C-F13ED6B778EE}|UsersManager.Data\\UsersManager.Data.csproj|c:\\mestrado\\programa\u00E7\u00E3oweb\\git\\2025-gestaousuarios\\src\\backend\\usersmanager.data\\mappings\\usuariomap.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1ADC1D19-A8A0-4914-BF6C-F13ED6B778EE}|UsersManager.Data\\UsersManager.Data.csproj|solutionrelative:usersmanager.data\\mappings\\usuariomap.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1ADC1D19-A8A0-4914-BF6C-F13ED6B778EE}|UsersManager.Data\\UsersManager.Data.csproj|c:\\mestrado\\programa\u00E7\u00E3oweb\\git\\2025-gestaousuarios\\src\\backend\\usersmanager.data\\repositories\\irepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1ADC1D19-A8A0-4914-BF6C-F13ED6B778EE}|UsersManager.Data\\UsersManager.Data.csproj|solutionrelative:usersmanager.data\\repositories\\irepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1ADC1D19-A8A0-4914-BF6C-F13ED6B778EE}|UsersManager.Data\\UsersManager.Data.csproj|c:\\mestrado\\programa\u00E7\u00E3oweb\\git\\2025-gestaousuarios\\src\\backend\\usersmanager.data\\mappings\\perfilusuariomap.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1ADC1D19-A8A0-4914-BF6C-F13ED6B778EE}|UsersManager.Data\\UsersManager.Data.csproj|solutionrelative:usersmanager.data\\mappings\\perfilusuariomap.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8EB29286-644B-4DC3-B506-97E0B4500FE5}|UsersManager.Application\\UsersManager.Application.csproj|c:\\mestrado\\programa\u00E7\u00E3oweb\\git\\2025-gestaousuarios\\src\\backend\\usersmanager.application\\dtos\\usuariodto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8EB29286-644B-4DC3-B506-97E0B4500FE5}|UsersManager.Application\\UsersManager.Application.csproj|solutionrelative:usersmanager.application\\dtos\\usuariodto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1ADC1D19-A8A0-4914-BF6C-F13ED6B778EE}|UsersManager.Data\\UsersManager.Data.csproj|c:\\mestrado\\programa\u00E7\u00E3oweb\\git\\2025-gestaousuarios\\src\\backend\\usersmanager.data\\dbinitializer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1ADC1D19-A8A0-4914-BF6C-F13ED6B778EE}|UsersManager.Data\\UsersManager.Data.csproj|solutionrelative:usersmanager.data\\dbinitializer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1ADC1D19-A8A0-4914-BF6C-F13ED6B778EE}|UsersManager.Data\\UsersManager.Data.csproj|c:\\mestrado\\programa\u00E7\u00E3oweb\\git\\2025-gestaousuarios\\src\\backend\\usersmanager.data\\appdbcontextfactory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1ADC1D19-A8A0-4914-BF6C-F13ED6B778EE}|UsersManager.Data\\UsersManager.Data.csproj|solutionrelative:usersmanager.data\\appdbcontextfactory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8EB29286-644B-4DC3-B506-97E0B4500FE5}|UsersManager.Application\\UsersManager.Application.csproj|c:\\mestrado\\programa\u00E7\u00E3oweb\\git\\2025-gestaousuarios\\src\\backend\\usersmanager.application\\services\\iusuarioservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8EB29286-644B-4DC3-B506-97E0B4500FE5}|UsersManager.Application\\UsersManager.Application.csproj|solutionrelative:usersmanager.application\\services\\iusuarioservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8EB29286-644B-4DC3-B506-97E0B4500FE5}|UsersManager.Application\\UsersManager.Application.csproj|c:\\mestrado\\programa\u00E7\u00E3oweb\\git\\2025-gestaousuarios\\src\\backend\\usersmanager.application\\dtos\\acessodto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8EB29286-644B-4DC3-B506-97E0B4500FE5}|UsersManager.Application\\UsersManager.Application.csproj|solutionrelative:usersmanager.application\\dtos\\acessodto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8EB29286-644B-4DC3-B506-97E0B4500FE5}|UsersManager.Application\\UsersManager.Application.csproj|c:\\mestrado\\programa\u00E7\u00E3oweb\\git\\2025-gestaousuarios\\src\\backend\\usersmanager.application\\dtos\\permissaodto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8EB29286-644B-4DC3-B506-97E0B4500FE5}|UsersManager.Application\\UsersManager.Application.csproj|solutionrelative:usersmanager.application\\dtos\\permissaodto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1ADC1D19-A8A0-4914-BF6C-F13ED6B778EE}|UsersManager.Data\\UsersManager.Data.csproj|c:\\mestrado\\programa\u00E7\u00E3oweb\\git\\2025-gestaousuarios\\src\\backend\\usersmanager.data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1ADC1D19-A8A0-4914-BF6C-F13ED6B778EE}|UsersManager.Data\\UsersManager.Data.csproj|solutionrelative:usersmanager.data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1ADC1D19-A8A0-4914-BF6C-F13ED6B778EE}|UsersManager.Data\\UsersManager.Data.csproj|c:\\mestrado\\programa\u00E7\u00E3oweb\\git\\2025-gestaousuarios\\src\\backend\\usersmanager.data\\iunitofwork.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1ADC1D19-A8A0-4914-BF6C-F13ED6B778EE}|UsersManager.Data\\UsersManager.Data.csproj|solutionrelative:usersmanager.data\\iunitofwork.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1ADC1D19-A8A0-4914-BF6C-F13ED6B778EE}|UsersManager.Data\\UsersManager.Data.csproj|c:\\mestrado\\programa\u00E7\u00E3oweb\\git\\2025-gestaousuarios\\src\\backend\\usersmanager.data\\entities\\acesso.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1ADC1D19-A8A0-4914-BF6C-F13ED6B778EE}|UsersManager.Data\\UsersManager.Data.csproj|solutionrelative:usersmanager.data\\entities\\acesso.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1ADC1D19-A8A0-4914-BF6C-F13ED6B778EE}|UsersManager.Data\\UsersManager.Data.csproj|c:\\mestrado\\programa\u00E7\u00E3oweb\\git\\2025-gestaousuarios\\src\\backend\\usersmanager.data\\mappings\\acessomap.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1ADC1D19-A8A0-4914-BF6C-F13ED6B778EE}|UsersManager.Data\\UsersManager.Data.csproj|solutionrelative:usersmanager.data\\mappings\\acessomap.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8EB29286-644B-4DC3-B506-97E0B4500FE5}|UsersManager.Application\\UsersManager.Application.csproj|c:\\mestrado\\programa\u00E7\u00E3oweb\\git\\2025-gestaousuarios\\src\\backend\\usersmanager.application\\utils\\extensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8EB29286-644B-4DC3-B506-97E0B4500FE5}|UsersManager.Application\\UsersManager.Application.csproj|solutionrelative:usersmanager.application\\utils\\extensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8EB29286-644B-4DC3-B506-97E0B4500FE5}|UsersManager.Application\\UsersManager.Application.csproj|c:\\mestrado\\programa\u00E7\u00E3oweb\\git\\2025-gestaousuarios\\src\\backend\\usersmanager.application\\services\\iperfilservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8EB29286-644B-4DC3-B506-97E0B4500FE5}|UsersManager.Application\\UsersManager.Application.csproj|solutionrelative:usersmanager.application\\services\\iperfilservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1ADC1D19-A8A0-4914-BF6C-F13ED6B778EE}|UsersManager.Data\\UsersManager.Data.csproj|c:\\mestrado\\programa\u00E7\u00E3oweb\\git\\2025-gestaousuarios\\src\\backend\\usersmanager.data\\usersmanager.data.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{1ADC1D19-A8A0-4914-BF6C-F13ED6B778EE}|UsersManager.Data\\UsersManager.Data.csproj|solutionrelative:usersmanager.data\\usersmanager.data.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8EB29286-644B-4DC3-B506-97E0B4500FE5}|UsersManager.Application\\UsersManager.Application.csproj|c:\\mestrado\\programa\u00E7\u00E3oweb\\git\\2025-gestaousuarios\\src\\backend\\usersmanager.application\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{8EB29286-644B-4DC3-B506-97E0B4500FE5}|UsersManager.Application\\UsersManager.Application.csproj|solutionrelative:usersmanager.application\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1ADC1D19-A8A0-4914-BF6C-F13ED6B778EE}|UsersManager.Data\\UsersManager.Data.csproj|c:\\mestrado\\programa\u00E7\u00E3oweb\\git\\2025-gestaousuarios\\src\\backend\\usersmanager.data\\mappings\\permissaomap.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1ADC1D19-A8A0-4914-BF6C-F13ED6B778EE}|UsersManager.Data\\UsersManager.Data.csproj|solutionrelative:usersmanager.data\\mappings\\permissaomap.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1ADC1D19-A8A0-4914-BF6C-F13ED6B778EE}|UsersManager.Data\\UsersManager.Data.csproj|c:\\mestrado\\programa\u00E7\u00E3oweb\\git\\2025-gestaousuarios\\src\\backend\\usersmanager.data\\mappings\\perfilmap.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1ADC1D19-A8A0-4914-BF6C-F13ED6B778EE}|UsersManager.Data\\UsersManager.Data.csproj|solutionrelative:usersmanager.data\\mappings\\perfilmap.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1ADC1D19-A8A0-4914-BF6C-F13ED6B778EE}|UsersManager.Data\\UsersManager.Data.csproj|c:\\mestrado\\programa\u00E7\u00E3oweb\\git\\2025-gestaousuarios\\src\\backend\\usersmanager.data\\entities\\permissao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1ADC1D19-A8A0-4914-BF6C-F13ED6B778EE}|UsersManager.Data\\UsersManager.Data.csproj|solutionrelative:usersmanager.data\\entities\\permissao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1ADC1D19-A8A0-4914-BF6C-F13ED6B778EE}|UsersManager.Data\\UsersManager.Data.csproj|c:\\mestrado\\programa\u00E7\u00E3oweb\\git\\2025-gestaousuarios\\src\\backend\\usersmanager.data\\entities\\perfilusuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1ADC1D19-A8A0-4914-BF6C-F13ED6B778EE}|UsersManager.Data\\UsersManager.Data.csproj|solutionrelative:usersmanager.data\\entities\\perfilusuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1ADC1D19-A8A0-4914-BF6C-F13ED6B778EE}|UsersManager.Data\\UsersManager.Data.csproj|c:\\mestrado\\programa\u00E7\u00E3oweb\\git\\2025-gestaousuarios\\src\\backend\\usersmanager.data\\entities\\perfilpermissao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1ADC1D19-A8A0-4914-BF6C-F13ED6B778EE}|UsersManager.Data\\UsersManager.Data.csproj|solutionrelative:usersmanager.data\\entities\\perfilpermissao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1ADC1D19-A8A0-4914-BF6C-F13ED6B778EE}|UsersManager.Data\\UsersManager.Data.csproj|c:\\mestrado\\programa\u00E7\u00E3oweb\\git\\2025-gestaousuarios\\src\\backend\\usersmanager.data\\mappings\\perfilpermissaomap.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1ADC1D19-A8A0-4914-BF6C-F13ED6B778EE}|UsersManager.Data\\UsersManager.Data.csproj|solutionrelative:usersmanager.data\\mappings\\perfilpermissaomap.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8EB29286-644B-4DC3-B506-97E0B4500FE5}|UsersManager.Application\\UsersManager.Application.csproj|c:\\mestrado\\programa\u00E7\u00E3oweb\\git\\2025-gestaousuarios\\src\\backend\\usersmanager.application\\dtos\\logindto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8EB29286-644B-4DC3-B506-97E0B4500FE5}|UsersManager.Application\\UsersManager.Application.csproj|solutionrelative:usersmanager.application\\dtos\\logindto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "UsuarioService.cs",
+              "DocumentMoniker": "C:\\Mestrado\\Programa\u00E7\u00E3oWeb\\git\\2025-GestaoUsuarios\\src\\backend\\UsersManager.Application\\Services\\UsuarioService.cs",
+              "RelativeDocumentMoniker": "UsersManager.Application\\Services\\UsuarioService.cs",
+              "ToolTip": "C:\\Mestrado\\Programa\u00E7\u00E3oWeb\\git\\2025-GestaoUsuarios\\src\\backend\\UsersManager.Application\\Services\\UsuarioService.cs",
+              "RelativeToolTip": "UsersManager.Application\\Services\\UsuarioService.cs",
+              "ViewState": "AgIAABcAAAAAAAAAAAAYwDIAAAAmAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-04T18:14:45.764Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "UsuarioController.cs",
+              "DocumentMoniker": "C:\\Mestrado\\Programa\u00E7\u00E3oWeb\\git\\2025-GestaoUsuarios\\src\\backend\\UsersManager.Application\\Controllers\\UsuarioController.cs",
+              "RelativeDocumentMoniker": "UsersManager.Application\\Controllers\\UsuarioController.cs",
+              "ToolTip": "C:\\Mestrado\\Programa\u00E7\u00E3oWeb\\git\\2025-GestaoUsuarios\\src\\backend\\UsersManager.Application\\Controllers\\UsuarioController.cs",
+              "RelativeToolTip": "UsersManager.Application\\Controllers\\UsuarioController.cs",
+              "ViewState": "AgIAACIAAAAAAAAAAAAQwCcAAAAzAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-28T15:02:43.86Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "UsuarioRepository.cs",
+              "DocumentMoniker": "C:\\Mestrado\\Programa\u00E7\u00E3oWeb\\git\\2025-GestaoUsuarios\\src\\backend\\UsersManager.Data\\Repositories\\UsuarioRepository.cs",
+              "RelativeDocumentMoniker": "UsersManager.Data\\Repositories\\UsuarioRepository.cs",
+              "ToolTip": "C:\\Mestrado\\Programa\u00E7\u00E3oWeb\\git\\2025-GestaoUsuarios\\src\\backend\\UsersManager.Data\\Repositories\\UsuarioRepository.cs",
+              "RelativeToolTip": "UsersManager.Data\\Repositories\\UsuarioRepository.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAABQAAAArAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-04T15:55:47.061Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "AcessoRepository.cs",
+              "DocumentMoniker": "C:\\Mestrado\\Programa\u00E7\u00E3oWeb\\git\\2025-GestaoUsuarios\\src\\backend\\UsersManager.Data\\Repositories\\AcessoRepository.cs",
+              "RelativeDocumentMoniker": "UsersManager.Data\\Repositories\\AcessoRepository.cs",
+              "ToolTip": "C:\\Mestrado\\Programa\u00E7\u00E3oWeb\\git\\2025-GestaoUsuarios\\src\\backend\\UsersManager.Data\\Repositories\\AcessoRepository.cs",
+              "RelativeToolTip": "UsersManager.Data\\Repositories\\AcessoRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-04T15:57:23.265Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Repository.cs",
+              "DocumentMoniker": "C:\\Mestrado\\Programa\u00E7\u00E3oWeb\\git\\2025-GestaoUsuarios\\src\\backend\\UsersManager.Data\\Repositories\\Repository.cs",
+              "RelativeDocumentMoniker": "UsersManager.Data\\Repositories\\Repository.cs",
+              "ToolTip": "C:\\Mestrado\\Programa\u00E7\u00E3oWeb\\git\\2025-GestaoUsuarios\\src\\backend\\UsersManager.Data\\Repositories\\Repository.cs",
+              "RelativeToolTip": "UsersManager.Data\\Repositories\\Repository.cs",
+              "ViewState": "AgIAAB4AAAAAAAAAAAAYwCkAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-04T16:25:59.64Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "PerfilService.cs",
+              "DocumentMoniker": "C:\\Mestrado\\Programa\u00E7\u00E3oWeb\\git\\2025-GestaoUsuarios\\src\\backend\\UsersManager.Application\\Services\\PerfilService.cs",
+              "RelativeDocumentMoniker": "UsersManager.Application\\Services\\PerfilService.cs",
+              "ToolTip": "C:\\Mestrado\\Programa\u00E7\u00E3oWeb\\git\\2025-GestaoUsuarios\\src\\backend\\UsersManager.Application\\Services\\PerfilService.cs",
+              "RelativeToolTip": "UsersManager.Application\\Services\\PerfilService.cs",
+              "ViewState": "AgIAAL8AAAAAAAAAAAAswEEAAAAuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-04T14:40:05.634Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Mestrado\\Programa\u00E7\u00E3oWeb\\git\\2025-GestaoUsuarios\\src\\backend\\UsersManager.Application\\Program.cs",
+              "RelativeDocumentMoniker": "UsersManager.Application\\Program.cs",
+              "ToolTip": "C:\\Mestrado\\Programa\u00E7\u00E3oWeb\\git\\2025-GestaoUsuarios\\src\\backend\\UsersManager.Application\\Program.cs",
+              "RelativeToolTip": "UsersManager.Application\\Program.cs",
+              "ViewState": "AgIAACQAAAAAAAAAAAAAADEAAAA4AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-28T13:32:45.808Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "PerfilDTO.cs",
+              "DocumentMoniker": "C:\\Mestrado\\Programa\u00E7\u00E3oWeb\\git\\2025-GestaoUsuarios\\src\\backend\\UsersManager.Application\\DTOs\\PerfilDTO.cs",
+              "RelativeDocumentMoniker": "UsersManager.Application\\DTOs\\PerfilDTO.cs",
+              "ToolTip": "C:\\Mestrado\\Programa\u00E7\u00E3oWeb\\git\\2025-GestaoUsuarios\\src\\backend\\UsersManager.Application\\DTOs\\PerfilDTO.cs",
+              "RelativeToolTip": "UsersManager.Application\\DTOs\\PerfilDTO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-06T21:05:04.725Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Perfil.cs",
+              "DocumentMoniker": "C:\\Mestrado\\Programa\u00E7\u00E3oWeb\\git\\2025-GestaoUsuarios\\src\\backend\\UsersManager.Data\\Entities\\Perfil.cs",
+              "RelativeDocumentMoniker": "UsersManager.Data\\Entities\\Perfil.cs",
+              "ToolTip": "C:\\Mestrado\\Programa\u00E7\u00E3oWeb\\git\\2025-GestaoUsuarios\\src\\backend\\UsersManager.Data\\Entities\\Perfil.cs",
+              "RelativeToolTip": "UsersManager.Data\\Entities\\Perfil.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-04T21:05:31.599Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "PerfilController.cs",
+              "DocumentMoniker": "C:\\Mestrado\\Programa\u00E7\u00E3oWeb\\git\\2025-GestaoUsuarios\\src\\backend\\UsersManager.Application\\Controllers\\PerfilController.cs",
+              "RelativeDocumentMoniker": "UsersManager.Application\\Controllers\\PerfilController.cs",
+              "ToolTip": "C:\\Mestrado\\Programa\u00E7\u00E3oWeb\\git\\2025-GestaoUsuarios\\src\\backend\\UsersManager.Application\\Controllers\\PerfilController.cs",
+              "RelativeToolTip": "UsersManager.Application\\Controllers\\PerfilController.cs",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAkwBcAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-28T15:04:45.805Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Usuario.cs",
+              "DocumentMoniker": "C:\\Mestrado\\Programa\u00E7\u00E3oWeb\\git\\2025-GestaoUsuarios\\src\\backend\\UsersManager.Data\\Entities\\Usuario.cs",
+              "RelativeDocumentMoniker": "UsersManager.Data\\Entities\\Usuario.cs",
+              "ToolTip": "C:\\Mestrado\\Programa\u00E7\u00E3oWeb\\git\\2025-GestaoUsuarios\\src\\backend\\UsersManager.Data\\Entities\\Usuario.cs",
+              "RelativeToolTip": "UsersManager.Data\\Entities\\Usuario.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAwAAAA7AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-04T21:04:11.959Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "PerfilRepository.cs",
+              "DocumentMoniker": "C:\\Mestrado\\Programa\u00E7\u00E3oWeb\\git\\2025-GestaoUsuarios\\src\\backend\\UsersManager.Data\\Repositories\\PerfilRepository.cs",
+              "RelativeDocumentMoniker": "UsersManager.Data\\Repositories\\PerfilRepository.cs",
+              "ToolTip": "C:\\Mestrado\\Programa\u00E7\u00E3oWeb\\git\\2025-GestaoUsuarios\\src\\backend\\UsersManager.Data\\Repositories\\PerfilRepository.cs",
+              "RelativeToolTip": "UsersManager.Data\\Repositories\\PerfilRepository.cs",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAAABYAAAA/AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-11T12:39:20.174Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "UsuarioMap.cs",
+              "DocumentMoniker": "C:\\Mestrado\\Programa\u00E7\u00E3oWeb\\git\\2025-GestaoUsuarios\\src\\backend\\UsersManager.Data\\Mappings\\UsuarioMap.cs",
+              "RelativeDocumentMoniker": "UsersManager.Data\\Mappings\\UsuarioMap.cs",
+              "ToolTip": "C:\\Mestrado\\Programa\u00E7\u00E3oWeb\\git\\2025-GestaoUsuarios\\src\\backend\\UsersManager.Data\\Mappings\\UsuarioMap.cs",
+              "RelativeToolTip": "UsersManager.Data\\Mappings\\UsuarioMap.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-04T20:53:37.556Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "PermissaoRepository.cs",
+              "DocumentMoniker": "C:\\Mestrado\\Programa\u00E7\u00E3oWeb\\git\\2025-GestaoUsuarios\\src\\backend\\UsersManager.Data\\Repositories\\PermissaoRepository.cs",
+              "RelativeDocumentMoniker": "UsersManager.Data\\Repositories\\PermissaoRepository.cs",
+              "ToolTip": "C:\\Mestrado\\Programa\u00E7\u00E3oWeb\\git\\2025-GestaoUsuarios\\src\\backend\\UsersManager.Data\\Repositories\\PermissaoRepository.cs",
+              "RelativeToolTip": "UsersManager.Data\\Repositories\\PermissaoRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-04T15:55:49.299Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "IRepository.cs",
+              "DocumentMoniker": "C:\\Mestrado\\Programa\u00E7\u00E3oWeb\\git\\2025-GestaoUsuarios\\src\\backend\\UsersManager.Data\\Repositories\\IRepository.cs",
+              "RelativeDocumentMoniker": "UsersManager.Data\\Repositories\\IRepository.cs",
+              "ToolTip": "C:\\Mestrado\\Programa\u00E7\u00E3oWeb\\git\\2025-GestaoUsuarios\\src\\backend\\UsersManager.Data\\Repositories\\IRepository.cs",
+              "RelativeToolTip": "UsersManager.Data\\Repositories\\IRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-04T15:57:16.711Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "PerfilUsuarioMap.cs",
+              "DocumentMoniker": "C:\\Mestrado\\Programa\u00E7\u00E3oWeb\\git\\2025-GestaoUsuarios\\src\\backend\\UsersManager.Data\\Mappings\\PerfilUsuarioMap.cs",
+              "RelativeDocumentMoniker": "UsersManager.Data\\Mappings\\PerfilUsuarioMap.cs",
+              "ToolTip": "C:\\Mestrado\\Programa\u00E7\u00E3oWeb\\git\\2025-GestaoUsuarios\\src\\backend\\UsersManager.Data\\Mappings\\PerfilUsuarioMap.cs",
+              "RelativeToolTip": "UsersManager.Data\\Mappings\\PerfilUsuarioMap.cs",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAiwBoAAAAzAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-04T21:02:56.18Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "DbInitializer.cs",
+              "DocumentMoniker": "C:\\Mestrado\\Programa\u00E7\u00E3oWeb\\git\\2025-GestaoUsuarios\\src\\backend\\UsersManager.Data\\DbInitializer.cs",
+              "RelativeDocumentMoniker": "UsersManager.Data\\DbInitializer.cs",
+              "ToolTip": "C:\\Mestrado\\Programa\u00E7\u00E3oWeb\\git\\2025-GestaoUsuarios\\src\\backend\\UsersManager.Data\\DbInitializer.cs",
+              "RelativeToolTip": "UsersManager.Data\\DbInitializer.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAA/AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-28T13:29:55.919Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "UsuarioDTO.cs",
+              "DocumentMoniker": "C:\\Mestrado\\Programa\u00E7\u00E3oWeb\\git\\2025-GestaoUsuarios\\src\\backend\\UsersManager.Application\\DTOs\\UsuarioDTO.cs",
+              "RelativeDocumentMoniker": "UsersManager.Application\\DTOs\\UsuarioDTO.cs",
+              "ToolTip": "C:\\Mestrado\\Programa\u00E7\u00E3oWeb\\git\\2025-GestaoUsuarios\\src\\backend\\UsersManager.Application\\DTOs\\UsuarioDTO.cs",
+              "RelativeToolTip": "UsersManager.Application\\DTOs\\UsuarioDTO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAuwA8AAAA7AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-07T00:57:36.432Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "AppDbContextFactory.cs",
+              "DocumentMoniker": "C:\\Mestrado\\Programa\u00E7\u00E3oWeb\\git\\2025-GestaoUsuarios\\src\\backend\\UsersManager.Data\\AppDbContextFactory.cs",
+              "RelativeDocumentMoniker": "UsersManager.Data\\AppDbContextFactory.cs",
+              "ToolTip": "C:\\Mestrado\\Programa\u00E7\u00E3oWeb\\git\\2025-GestaoUsuarios\\src\\backend\\UsersManager.Data\\AppDbContextFactory.cs",
+              "RelativeToolTip": "UsersManager.Data\\AppDbContextFactory.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-06T23:59:14.414Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "IUsuarioService.cs",
+              "DocumentMoniker": "C:\\Mestrado\\Programa\u00E7\u00E3oWeb\\git\\2025-GestaoUsuarios\\src\\backend\\UsersManager.Application\\Services\\IUsuarioService.cs",
+              "RelativeDocumentMoniker": "UsersManager.Application\\Services\\IUsuarioService.cs",
+              "ToolTip": "C:\\Mestrado\\Programa\u00E7\u00E3oWeb\\git\\2025-GestaoUsuarios\\src\\backend\\UsersManager.Application\\Services\\IUsuarioService.cs",
+              "RelativeToolTip": "UsersManager.Application\\Services\\IUsuarioService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAACJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-04T14:36:29.255Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "AcessoDTO.cs",
+              "DocumentMoniker": "C:\\Mestrado\\Programa\u00E7\u00E3oWeb\\git\\2025-GestaoUsuarios\\src\\backend\\UsersManager.Application\\DTOs\\AcessoDTO.cs",
+              "RelativeDocumentMoniker": "UsersManager.Application\\DTOs\\AcessoDTO.cs",
+              "ToolTip": "C:\\Mestrado\\Programa\u00E7\u00E3oWeb\\git\\2025-GestaoUsuarios\\src\\backend\\UsersManager.Application\\DTOs\\AcessoDTO.cs",
+              "RelativeToolTip": "UsersManager.Application\\DTOs\\AcessoDTO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAoAAAAwAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-07T21:10:25.891Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "AppDbContext.cs",
+              "DocumentMoniker": "C:\\Mestrado\\Programa\u00E7\u00E3oWeb\\git\\2025-GestaoUsuarios\\src\\backend\\UsersManager.Data\\AppDbContext.cs",
+              "RelativeDocumentMoniker": "UsersManager.Data\\AppDbContext.cs",
+              "ToolTip": "C:\\Mestrado\\Programa\u00E7\u00E3oWeb\\git\\2025-GestaoUsuarios\\src\\backend\\UsersManager.Data\\AppDbContext.cs",
+              "RelativeToolTip": "UsersManager.Data\\AppDbContext.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAuwBEAAAApAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-28T13:43:37.912Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "IUnitOfWork.cs",
+              "DocumentMoniker": "C:\\Mestrado\\Programa\u00E7\u00E3oWeb\\git\\2025-GestaoUsuarios\\src\\backend\\UsersManager.Data\\IUnitOfWork.cs",
+              "RelativeDocumentMoniker": "UsersManager.Data\\IUnitOfWork.cs",
+              "ToolTip": "C:\\Mestrado\\Programa\u00E7\u00E3oWeb\\git\\2025-GestaoUsuarios\\src\\backend\\UsersManager.Data\\IUnitOfWork.cs",
+              "RelativeToolTip": "UsersManager.Data\\IUnitOfWork.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-04T16:15:49.716Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "Acesso.cs",
+              "DocumentMoniker": "C:\\Mestrado\\Programa\u00E7\u00E3oWeb\\git\\2025-GestaoUsuarios\\src\\backend\\UsersManager.Data\\Entities\\Acesso.cs",
+              "RelativeDocumentMoniker": "UsersManager.Data\\Entities\\Acesso.cs",
+              "ToolTip": "C:\\Mestrado\\Programa\u00E7\u00E3oWeb\\git\\2025-GestaoUsuarios\\src\\backend\\UsersManager.Data\\Entities\\Acesso.cs",
+              "RelativeToolTip": "UsersManager.Data\\Entities\\Acesso.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAoAAAA1AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-04T21:05:07.216Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "PermissaoDTO.cs",
+              "DocumentMoniker": "C:\\Mestrado\\Programa\u00E7\u00E3oWeb\\git\\2025-GestaoUsuarios\\src\\backend\\UsersManager.Application\\DTOs\\PermissaoDTO.cs",
+              "RelativeDocumentMoniker": "UsersManager.Application\\DTOs\\PermissaoDTO.cs",
+              "ToolTip": "C:\\Mestrado\\Programa\u00E7\u00E3oWeb\\git\\2025-GestaoUsuarios\\src\\backend\\UsersManager.Application\\DTOs\\PermissaoDTO.cs",
+              "RelativeToolTip": "UsersManager.Application\\DTOs\\PermissaoDTO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-04T15:45:45.66Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "AcessoMap.cs",
+              "DocumentMoniker": "C:\\Mestrado\\Programa\u00E7\u00E3oWeb\\git\\2025-GestaoUsuarios\\src\\backend\\UsersManager.Data\\Mappings\\AcessoMap.cs",
+              "RelativeDocumentMoniker": "UsersManager.Data\\Mappings\\AcessoMap.cs",
+              "ToolTip": "C:\\Mestrado\\Programa\u00E7\u00E3oWeb\\git\\2025-GestaoUsuarios\\src\\backend\\UsersManager.Data\\Mappings\\AcessoMap.cs",
+              "RelativeToolTip": "UsersManager.Data\\Mappings\\AcessoMap.cs",
+              "ViewState": "AgIAAAoAAAAAAAAAAAAcwBsAAAAzAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-04T21:05:01.31Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
+              "Title": "Extensions.cs",
+              "DocumentMoniker": "C:\\Mestrado\\Programa\u00E7\u00E3oWeb\\git\\2025-GestaoUsuarios\\src\\backend\\UsersManager.Application\\Utils\\Extensions.cs",
+              "RelativeDocumentMoniker": "UsersManager.Application\\Utils\\Extensions.cs",
+              "ToolTip": "C:\\Mestrado\\Programa\u00E7\u00E3oWeb\\git\\2025-GestaoUsuarios\\src\\backend\\UsersManager.Application\\Utils\\Extensions.cs",
+              "RelativeToolTip": "UsersManager.Application\\Utils\\Extensions.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-05T22:15:21.335Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 27,
+              "Title": "IPerfilService.cs",
+              "DocumentMoniker": "C:\\Mestrado\\Programa\u00E7\u00E3oWeb\\git\\2025-GestaoUsuarios\\src\\backend\\UsersManager.Application\\Services\\IPerfilService.cs",
+              "RelativeDocumentMoniker": "UsersManager.Application\\Services\\IPerfilService.cs",
+              "ToolTip": "C:\\Mestrado\\Programa\u00E7\u00E3oWeb\\git\\2025-GestaoUsuarios\\src\\backend\\UsersManager.Application\\Services\\IPerfilService.cs",
+              "RelativeToolTip": "UsersManager.Application\\Services\\IPerfilService.cs",
+              "ViewState": "AgIAAAQAAAAAAAAAAAAjwAsAAAAoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-04T14:39:50.24Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 28,
+              "Title": "UsersManager.Data.csproj",
+              "DocumentMoniker": "C:\\Mestrado\\Programa\u00E7\u00E3oWeb\\git\\2025-GestaoUsuarios\\src\\backend\\UsersManager.Data\\UsersManager.Data.csproj",
+              "RelativeDocumentMoniker": "UsersManager.Data\\UsersManager.Data.csproj",
+              "ToolTip": "C:\\Mestrado\\Programa\u00E7\u00E3oWeb\\git\\2025-GestaoUsuarios\\src\\backend\\UsersManager.Data\\UsersManager.Data.csproj",
+              "RelativeToolTip": "UsersManager.Data\\UsersManager.Data.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-05-28T13:44:33.425Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 29,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Mestrado\\Programa\u00E7\u00E3oWeb\\git\\2025-GestaoUsuarios\\src\\backend\\UsersManager.Application\\appsettings.json",
+              "RelativeDocumentMoniker": "UsersManager.Application\\appsettings.json",
+              "ToolTip": "C:\\Mestrado\\Programa\u00E7\u00E3oWeb\\git\\2025-GestaoUsuarios\\src\\backend\\UsersManager.Application\\appsettings.json",
+              "RelativeToolTip": "UsersManager.Application\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-06-04T21:27:42.595Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 30,
+              "Title": "PermissaoMap.cs",
+              "DocumentMoniker": "C:\\Mestrado\\Programa\u00E7\u00E3oWeb\\git\\2025-GestaoUsuarios\\src\\backend\\UsersManager.Data\\Mappings\\PermissaoMap.cs",
+              "RelativeDocumentMoniker": "UsersManager.Data\\Mappings\\PermissaoMap.cs",
+              "ToolTip": "C:\\Mestrado\\Programa\u00E7\u00E3oWeb\\git\\2025-GestaoUsuarios\\src\\backend\\UsersManager.Data\\Mappings\\PermissaoMap.cs",
+              "RelativeToolTip": "UsersManager.Data\\Mappings\\PermissaoMap.cs",
+              "ViewState": "AgIAAAEAAAAAAAAAAAAqwBQAAABKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-04T21:06:05.192Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 31,
+              "Title": "PerfilMap.cs",
+              "DocumentMoniker": "C:\\Mestrado\\Programa\u00E7\u00E3oWeb\\git\\2025-GestaoUsuarios\\src\\backend\\UsersManager.Data\\Mappings\\PerfilMap.cs",
+              "RelativeDocumentMoniker": "UsersManager.Data\\Mappings\\PerfilMap.cs",
+              "ToolTip": "C:\\Mestrado\\Programa\u00E7\u00E3oWeb\\git\\2025-GestaoUsuarios\\src\\backend\\UsersManager.Data\\Mappings\\PerfilMap.cs",
+              "RelativeToolTip": "UsersManager.Data\\Mappings\\PerfilMap.cs",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAiwBoAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-04T21:05:47.098Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 32,
+              "Title": "Permissao.cs",
+              "DocumentMoniker": "C:\\Mestrado\\Programa\u00E7\u00E3oWeb\\git\\2025-GestaoUsuarios\\src\\backend\\UsersManager.Data\\Entities\\Permissao.cs",
+              "RelativeDocumentMoniker": "UsersManager.Data\\Entities\\Permissao.cs",
+              "ToolTip": "C:\\Mestrado\\Programa\u00E7\u00E3oWeb\\git\\2025-GestaoUsuarios\\src\\backend\\UsersManager.Data\\Entities\\Permissao.cs",
+              "RelativeToolTip": "UsersManager.Data\\Entities\\Permissao.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAAwAoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-04T21:06:06.204Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 33,
+              "Title": "PerfilUsuario.cs",
+              "DocumentMoniker": "C:\\Mestrado\\Programa\u00E7\u00E3oWeb\\git\\2025-GestaoUsuarios\\src\\backend\\UsersManager.Data\\Entities\\PerfilUsuario.cs",
+              "RelativeDocumentMoniker": "UsersManager.Data\\Entities\\PerfilUsuario.cs",
+              "ToolTip": "C:\\Mestrado\\Programa\u00E7\u00E3oWeb\\git\\2025-GestaoUsuarios\\src\\backend\\UsersManager.Data\\Entities\\PerfilUsuario.cs",
+              "RelativeToolTip": "UsersManager.Data\\Entities\\PerfilUsuario.cs",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAuwBAAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-04T21:02:35.054Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 34,
+              "Title": "PerfilPermissao.cs",
+              "DocumentMoniker": "C:\\Mestrado\\Programa\u00E7\u00E3oWeb\\git\\2025-GestaoUsuarios\\src\\backend\\UsersManager.Data\\Entities\\PerfilPermissao.cs",
+              "RelativeDocumentMoniker": "UsersManager.Data\\Entities\\PerfilPermissao.cs",
+              "ToolTip": "C:\\Mestrado\\Programa\u00E7\u00E3oWeb\\git\\2025-GestaoUsuarios\\src\\backend\\UsersManager.Data\\Entities\\PerfilPermissao.cs",
+              "RelativeToolTip": "UsersManager.Data\\Entities\\PerfilPermissao.cs",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAuwBAAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-04T21:03:18.55Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 35,
+              "Title": "PerfilPermissaoMap.cs",
+              "DocumentMoniker": "C:\\Mestrado\\Programa\u00E7\u00E3oWeb\\git\\2025-GestaoUsuarios\\src\\backend\\UsersManager.Data\\Mappings\\PerfilPermissaoMap.cs",
+              "RelativeDocumentMoniker": "UsersManager.Data\\Mappings\\PerfilPermissaoMap.cs",
+              "ToolTip": "C:\\Mestrado\\Programa\u00E7\u00E3oWeb\\git\\2025-GestaoUsuarios\\src\\backend\\UsersManager.Data\\Mappings\\PerfilPermissaoMap.cs",
+              "RelativeToolTip": "UsersManager.Data\\Mappings\\PerfilPermissaoMap.cs",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAqwB8AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-04T21:03:42.162Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 36,
+              "Title": "LoginDTO.cs",
+              "DocumentMoniker": "C:\\Mestrado\\Programa\u00E7\u00E3oWeb\\git\\2025-GestaoUsuarios\\src\\backend\\UsersManager.Application\\DTOs\\LoginDTO.cs",
+              "RelativeDocumentMoniker": "UsersManager.Application\\DTOs\\LoginDTO.cs",
+              "ToolTip": "C:\\Mestrado\\Programa\u00E7\u00E3oWeb\\git\\2025-GestaoUsuarios\\src\\backend\\UsersManager.Application\\DTOs\\LoginDTO.cs",
+              "RelativeToolTip": "UsersManager.Application\\DTOs\\LoginDTO.cs",
+              "ViewState": "AgIAAAIAAAAAAAAAAAAxwAkAAAA+AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-04T20:28:41.044Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
