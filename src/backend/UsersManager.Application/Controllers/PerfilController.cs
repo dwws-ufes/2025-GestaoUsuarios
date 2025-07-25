@@ -157,5 +157,19 @@ namespace UsersManager.Application.Controllers
 
             return NoContent();
         }
+
+        // === Perfil RDF ===
+
+        // GET: api/Perfil/{id}/rdf
+        [HttpGet("{id}.rdf")]
+        public async Task<IActionResult> GetPerfilRdf(int id)
+        {
+            var perfil = await _perfilService.ObterPorIdAsync(id);
+            if (perfil == null)
+                return NotFound();
+
+            var rdf = await _perfilService.SerializePerfil(perfil);
+            return Content(rdf, "text/turtle"); // Retorna o conteúdo RDF no formato Turtle
+        }
     }
 }

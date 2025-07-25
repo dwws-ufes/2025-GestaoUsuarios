@@ -88,7 +88,10 @@ export default {
     userDeleted: 'Usuário excluído com sucesso!',
     deleteFailed: 'Falha ao excluir usuário.',
     noDataAvailable: 'Nenhum dado disponível.',
-    noProfileAssigned: 'Nenhum perfil atribuído', // Assumindo que você já tem este
+    noProfileAssigned: 'Nenhum perfil atribuído',
+    exportRdf: 'Exportar para RDF',
+    rdfExportSuccess: 'RDF exportado com sucesso!',
+    deleteUser: 'Excluir usuário',
     columns: {
       name: 'Nome',
       login: 'Login (E-mail)',
@@ -162,6 +165,10 @@ export default {
     confirmTitle: 'Confirmação',
     confirmDeleteMessage: "Tem certeza que deseja deletar o perfil '{name}'?",
     deleteProfile: 'Deletar Perfil',
+    dbpediaInfoTitle: 'Descrição do DBpedia',
+    exportRdf: 'Exportar para RDF',
+    exportSuccess: 'RDF exportado com sucesso!',
+    loadingExport: 'Gerando arquivo RDF ...',
     errors: {
       nameRequired: 'O nome do perfil é obrigatório.',
       descriptionRequired: 'A descrição do perfil é obrigatória.',

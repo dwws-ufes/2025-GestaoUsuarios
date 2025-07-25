@@ -12,6 +12,7 @@ namespace UsersManager.Application.Services
         Task<LoginDTO> Login(LoginDTO dto);
 
         Task<IEnumerable<AcessoDTO>> ListarAcessosAsync(DateTime dataInicial, DateTime dataFinal, bool falhou, bool sucesso, string sort);
+        string SerializeUser(Task<UsuarioDTO?> user);
     }
 
 }

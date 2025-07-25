@@ -3,6 +3,7 @@ import { defineStore } from 'pinia'
 import { api } from 'boot/axios'
 import dayjs from 'dayjs'
 import localizedFormat from 'dayjs/plugin/localizedFormat'
+import { i18n } from 'boot/i18n'
 
 dayjs.extend(localizedFormat)
 
@@ -470,6 +471,19 @@ export const useCommonStore = defineStore('common', {
         this.dashboardFailedAccesses = []
       } finally {
         this.isDashboardLoading = false
+      }
+    },
+
+    async fetchDescricaoPerfil(nomePerfil) {
+      try {
+        const { descricao } = await usuarioService.getDescricaoCargo(
+          nomePerfil,
+          i18n?.global?.locale?.value || 'pt',
+        )
+        return descricao || null
+      } catch (err) {
+        this._handleApiError(err, 'Erro ao buscar descrição do perfil via DBpedia:', 'fetch')
+        return null
       }
     },
   },

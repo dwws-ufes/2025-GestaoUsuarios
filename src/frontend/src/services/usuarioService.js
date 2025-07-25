@@ -1,3 +1,4 @@
+// src/services/usuarioService.js
 import { api } from 'boot/axios' // Importa a instância do Axios
 
 const USUARIO_BASE_URL = '/api/Usuario' // Base da URL para o UsuarioController
@@ -111,6 +112,33 @@ const usuarioService = {
       return response.data
     } catch (error) {
       console.error('Erro ao buscar acessos:', error)
+      throw error
+    }
+  },
+  async getDescricaoCargo(termo, lang) {
+    const { data } = await api.get(USUARIO_BASE_URL + '/descricaoCargo', {
+      params: { termo, lang },
+    })
+    return data
+  },
+
+  /**
+   * Busca o registro RDF de um usuário por ID.
+   * @param {string} id - ID do usuário.
+   * @returns {Promise<string>} O conteúdo RDF do usuário.
+   * @throws {Error} Se a requisição falhar.
+   */
+  async getUsuarioRdf(id) {
+    try {
+      // O backend retorna diretamente o conteúdo RDF como text/turtle
+      const response = await api.get(`${USUARIO_BASE_URL}/${id}.rdf`, {
+        headers: {
+          Accept: 'text/turtle', // Solicita o formato Turtle
+        },
+      })
+      return response.data
+    } catch (error) {
+      console.error(`Erro ao buscar RDF do usuário com ID ${id}:`, error)
       throw error
     }
   },

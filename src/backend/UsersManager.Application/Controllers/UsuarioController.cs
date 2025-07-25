@@ -20,17 +20,19 @@ namespace UsersManager.Application.Controllers
         private readonly IUsuarioService _usuarioService;
         private readonly IPasswordHasher<Usuario> _passwordHasher;
         private readonly IConfiguration _configuration;
+        private readonly IExternalDataService _externalDataService;
 
         public UsuarioController(
             IUnitOfWork unitOfWork,
             IUsuarioService usuarioService,
             IPasswordHasher<Usuario> passwordHasher,
-            IConfiguration configuration
+            IConfiguration configuration, IExternalDataService externalDataService
             )
         {
             _usuarioService = usuarioService;
             _passwordHasher = passwordHasher;
             _configuration = configuration;
+            _externalDataService = externalDataService;
         }
 
         // === LOGIN ===
@@ -55,7 +57,7 @@ namespace UsersManager.Application.Controllers
                 Token = token,
                 NomeUsuario = usuario.UsuarioLogado.Nome,
                 PerfilPrimario = usuario.UsuarioLogado.NomePerfil ?? "Desconhecido",
-                Perfis=usuario.UsuarioLogado.Perfis.Select(x=>x.Nome),
+                Perfis = usuario.UsuarioLogado.Perfis.Select(x => x.Nome),
                 Recursos = usuario.UsuarioLogado.Recursos
             });
         }
@@ -172,11 +174,11 @@ namespace UsersManager.Application.Controllers
 
         [HttpGet("acessos")]
         [Authorize]
-        public async Task<ActionResult<IEnumerable<AcessoDTO>>> GetAllAcessos(DateTime dataInicial, DateTime dataFinal, bool falhou,bool sucesso, string sort)
+        public async Task<ActionResult<IEnumerable<AcessoDTO>>> GetAllAcessos(DateTime dataInicial, DateTime dataFinal, bool falhou, bool sucesso, string sort)
         {
             try
             {
-                var acessos = await _usuarioService.ListarAcessosAsync(dataInicial,dataFinal,falhou,sucesso,sort);
+                var acessos = await _usuarioService.ListarAcessosAsync(dataInicial, dataFinal, falhou, sucesso, sort);
                 return Ok(acessos);
             }
             catch (Exception ex)
@@ -185,5 +187,53 @@ namespace UsersManager.Application.Controllers
                 return BadRequest(new { message = ex.Message });
             }
         }
+
+        // === Usuarios RDF ===
+
+
+        [HttpGet("{id}.rdf")]
+        public async Task<IActionResult> ObterUsuarioRDF(int id)
+        {
+            var usuario = await _usuarioService.ObterPorIdAsync(id);
+            if (usuario == null)
+                return NotFound();
+
+            var rdf = _usuarioService.SerializeUser(Task.FromResult<UsuarioDTO?>(usuario));
+            return Content(rdf, "text/turtle");
+        }
+
+
+        [HttpGet("{id}/descricaoCargo")]
+        public async Task<IActionResult> ObterDescricaoCargo(int id)
+        {
+            var usuario = await _usuarioService.ObterPorIdAsync(id);
+            if (usuario == null || string.IsNullOrWhiteSpace(usuario.NomePerfil))
+                return NotFound("Usuário ou cargo não encontrado");
+
+            var descricao = await _externalDataService.ObterDescricaoDbpedia(usuario.NomePerfil);
+            if (descricao == null)
+                return NotFound($"Descrição [{usuario.NomePerfil}] não encontrada na DBpedia");
+
+            return Ok(new { Cargo = usuario.NomePerfil, Descricao = descricao });
+        }
+
+        [HttpGet("descricaoCargo")]
+        public async Task<IActionResult> ObterDescricaoCargo([FromQuery] string termo, [FromQuery] string lang = "pt")
+        {
+            if (string.IsNullOrWhiteSpace(termo))
+                return BadRequest("Termo não pode ser vazio.");
+
+            try
+            {
+                var descricao = await _externalDataService.ObterDescricaoDbpedia(termo, lang);
+                return Ok(new { descricao });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, "Erro ao consultar DBpedia.");
+            }
+        }
+
     }
 }
+    

@@ -89,6 +89,9 @@ export default {
     deleteFailed: 'Failed to delete user.',
     noDataAvailable: 'No data available.',
     noProfileAssigned: 'No profile assigned',
+    exportRdf: 'Export to RDF',
+    rdfExportSuccess: 'RDF exported successfully!',
+    deleteUser: 'Delete user',
     columns: {
       // This seems to be a duplicate from the outer 'columns' but within 'usersPage'
       name: 'Name',
@@ -162,6 +165,10 @@ export default {
     confirmTitle: 'Confirmation',
     confirmDeleteMessage: "Are you sure you want to delete profile '{name}'?",
     deleteProfile: 'Delete Profile',
+    dbpediaInfoTitle: 'DBpedia description',
+    exportRdf: 'Export to RDF',
+    exportSuccess: 'RDF exported successfully!',
+    loadingExport: 'Generating RDF file ...',
     errors: {
       nameRequired: 'Profile name is required.',
       descriptionRequired: 'Profile description is required.',

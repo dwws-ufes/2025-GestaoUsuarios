@@ -1,3 +1,4 @@
+<!-- /src/pages/UsuariosPage.vue-->
 <template>
   <q-page class="q-pa-md">
     <div class="row items-center justify-between q-mb-md">
@@ -144,6 +145,17 @@
           >
             <q-tooltip>{{ t('usersPage.deleteUser') }}</q-tooltip>
           </q-btn>
+          <q-btn
+            flat
+            round
+            dense
+            icon="share"
+            color="info"
+            @click="exportUserRdf(props.row)"
+            :aria-label="t('usersPage.exportRdf')"
+          >
+            <q-tooltip>{{ t('usersPage.exportRdf') }}</q-tooltip>
+          </q-btn>
         </q-td>
       </template>
       <template #loading>
@@ -168,6 +180,7 @@ import { useQuasar } from 'quasar'
 import { useRoute, useRouter } from 'vue-router'
 import { useI18n } from 'vue-i18n'
 import { useCommonStore } from 'stores/common-store'
+import usuarioService from '../services/usuarioService' // Importar o serviço de usuário
 
 const { t } = useI18n()
 const $q = useQuasar()
@@ -326,6 +339,29 @@ async function deleteUser(id) {
   }
 }
 
+// Nova função para exportar o usuário como RDF
+async function exportUserRdf(user) {
+  try {
+    $q.loading.show({ message: t('usersPage.loadingRdfExport') })
+    const rdfContent = await usuarioService.getUsuarioRdf(user.id) // Chamar o novo método
+    const blob = new Blob([rdfContent], { type: 'text/turtle' })
+    const url = URL.createObjectURL(blob)
+    const link = document.createElement('a')
+    link.href = url
+    link.setAttribute('download', `usuario_${user.id}.ttl`) // Nome do arquivo .ttl
+    document.body.appendChild(link)
+    link.click()
+    document.body.removeChild(link)
+    URL.revokeObjectURL(url)
+    $q.notify({ type: 'positive', message: t('usersPage.rdfExportSuccess') })
+  } catch (error) {
+    console.error('Error exporting user RDF:', error)
+    $q.notify({ type: 'negative', message: error.message || t('usersPage.errors.rdfExportFailed') })
+  } finally {
+    $q.loading.hide()
+  }
+}
+
 watch(
   () => route.query.idUsuario,
   async (id) => {
@@ -335,7 +371,7 @@ watch(
         const userData = await commonStore.fetchUserById(id)
         // Garante que 'perfis' é um array vazio se não vier da API.
         // É crucial que commonStore.fetchUserById retorne PerfilDTO completos.
-        userData.perfis = userData.perfis || []
+        userData.perfis = userData.perfis ? [...userData.perfis] : []
         toggleUserForm(true, userData)
       } catch (error) {
         console.error('Error loading user for editing:', error)

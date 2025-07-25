@@ -1,3 +1,4 @@
+<!-- /src/pages/AcessosPage.vue-->
 <template>
   <q-page class="q-pa-md">
     <div class="row items-center justify-between q-mb-md">

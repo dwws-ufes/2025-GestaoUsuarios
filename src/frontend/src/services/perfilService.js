@@ -45,13 +45,13 @@ const perfilService = {
 
   /**
    * Cria um novo perfil.
-   * @param {Object} perfilData - Dados do perfil a ser criado.
+   * @param {Object} profileData - Dados do perfil a ser criado.
    * @returns {Promise<Object>} Perfil criado.
    * @throws {Error} Se a requisição falhar.
    */
-  async createPerfil(perfilData) {
+  async createPerfil(profileData) {
     try {
-      const response = await api.post(PERFIL_BASE_URL, perfilData)
+      const response = await api.post(PERFIL_BASE_URL, profileData)
       return response.data
     } catch (error) {
       console.error('Erro ao criar perfil:', error)
@@ -62,13 +62,13 @@ const perfilService = {
   /**
    * Atualiza um perfil existente.
    * @param {string} id - ID do perfil a ser atualizado.
-   * @param {Object} perfilData - Novos dados do perfil.
+   * @param {Object} profileData - Novos dados do perfil.
    * @returns {Promise<Object>} Perfil atualizado.
    * @throws {Error} Se a requisição falhar.
    */
-  async updatePerfil(id, perfilData) {
+  async updatePerfil(id, profileData) {
     try {
-      const response = await api.put(`${PERFIL_BASE_URL}/${id}`, perfilData)
+      const response = await api.put(`${PERFIL_BASE_URL}/${id}`, profileData)
       return response.data
     } catch (error) {
       console.error(`Erro ao atualizar perfil com ID ${id}:`, error)
@@ -91,18 +91,13 @@ const perfilService = {
     }
   },
 
-  // --- Funções de Permissões ---
-
   /**
-   * Busca todas as permissões.
+   * Lista todas as permissões disponíveis.
    * @returns {Promise<Array>} Lista de permissões.
    * @throws {Error} Se a requisição falhar.
    */
   async getPermissions() {
     try {
-      // Usando PERMISSAO_BASE_URL que foi adicionado.
-      // Se o endpoint for '/api/Perfil/permissoes', você pode manter como estava:
-      // const response = await api.get(PERFIL_BASE_URL + '/permissoes');
       const response = await api.get(PERMISSAO_BASE_URL)
       return response.data
     } catch (error) {
@@ -112,34 +107,19 @@ const perfilService = {
   },
 
   /**
-   * Cria uma nova permissão.
-   * @param {Object} permissionData - Dados da permissão a ser criada ({ nome, descricao }).
-   * @returns {Promise<Object>} Permissão criada.
+   * Salva permissões (cria ou atualiza).
+   * @param {Object|Array} permissionData - Dados da permissão ou array de permissões.
+   * @returns {Promise<Object|Array>} Permissão(ões) salva(s).
    * @throws {Error} Se a requisição falhar.
    */
-  async createPermission(permissionData) {
+  async savePermissions(permissionData) {
     try {
-      const response = await api.post(PERMISSAO_BASE_URL, permissionData)
+      // O backend espera um array, então encapsulamos se for um único objeto
+      const payload = Array.isArray(permissionData) ? permissionData : [permissionData]
+      const response = await api.post(PERMISSAO_BASE_URL, payload) // O método SavePermissoesAsync no backend é POST
       return response.data
     } catch (error) {
-      console.error('Erro ao criar permissão:', error)
-      throw error
-    }
-  },
-
-  /**
-   * Atualiza uma permissão existente.
-   * @param {string} id - ID da permissão a ser atualizada.
-   * @param {Object} permissionData - Novos dados da permissão ({ nome, descricao }).
-   * @returns {Promise<Object>} Permissão atualizada.
-   * @throws {Error} Se a requisição falhar.
-   */
-  async updatePermission(id, permissionData) {
-    try {
-      const response = await api.post(PERMISSAO_BASE_URL, permissionData)
-      return response.data
-    } catch (error) {
-      console.error(`Erro ao atualizar permissão com ID ${id}:`, error)
+      console.error('Erro ao salvar permissão(ões):', error)
       throw error
     }
   },
@@ -155,6 +135,26 @@ const perfilService = {
       await api.delete(`${PERMISSAO_BASE_URL}/${id}`)
     } catch (error) {
       console.error(`Erro ao deletar permissão com ID ${id}:`, error)
+      throw error
+    }
+  },
+
+  /**
+   * Busca o registro RDF de um perfil por ID.
+   * @param {string} id - ID do perfil.
+   * @returns {Promise<string>} O conteúdo RDF do perfil.
+   * @throws {Error} Se a requisição falhar.
+   */
+  async getPerfilRdf(id) {
+    try {
+      const response = await api.get(`${PERFIL_BASE_URL}/${id}.rdf`, {
+        headers: {
+          Accept: 'text/turtle', // Solicita o formato Turtle
+        },
+      })
+      return response.data
+    } catch (error) {
+      console.error(`Erro ao buscar RDF do perfil com ID ${id}:`, error)
       throw error
     }
   },

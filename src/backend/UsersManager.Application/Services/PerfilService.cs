@@ -1,12 +1,15 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
+using System.Text;
 using UsersManager.Application.DTOs;
 using UsersManager.Application.Services;
 using UsersManager.Application.Utils;
 using UsersManager.Data;
 using UsersManager.Data.Entities;
 using UsersManager.Data.Repositories;
+using VDS.RDF;
+using VDS.RDF.Writing;
 using static UsersManager.Application.DTOs.PermissaoDTO;
 using static UsersManager.Data.IUnitOfWork;
 using IUnitOfWork = UsersManager.Data.IUnitOfWork;
@@ -18,12 +21,16 @@ namespace UsersManager.Application.Services
         private readonly IRepository<Perfil> _perfilRepository;
         private readonly IRepository<Permissao> _permissaoRepository;
         private readonly IUnitOfWork _context;
+        private readonly IConfiguration _configuration;
+        private readonly IExternalDataService _externalDataService; 
 
-        public PerfilService(IUnitOfWork unitOfWork, IRepository<Perfil> perfilRepository, IRepository<Permissao> permissaoRepository)
+        public PerfilService(IUnitOfWork unitOfWork, IRepository<Perfil> perfilRepository, IRepository<Permissao> permissaoRepository, IConfiguration configuration, IExternalDataService externalDataService)
         {
             _context = unitOfWork;
             _perfilRepository = perfilRepository;
             _permissaoRepository = permissaoRepository;
+            _configuration = configuration;
+            _externalDataService = externalDataService;
         }
 
         public async Task<IEnumerable<PerfilDTO>> ListarTodosAsync()
@@ -80,7 +87,7 @@ namespace UsersManager.Application.Services
             predicate: p => p.Id == dto.Id,
             include: query => query
                 .Include(u => u.PerfisPermissao)
-                .ThenInclude(p=>p.Permissao)
+                .ThenInclude(p => p.Permissao)
         );
                 perfil = perfis.FirstOrDefault();
 
@@ -244,6 +251,74 @@ namespace UsersManager.Application.Services
             return permissoes;
         }
 
-    }
+        // Implementação do novo método SerializePerfil
+        public async Task<string> SerializePerfil(PerfilDTO perfilDTO)
+        {
+            var perfil = await _perfilRepository.GetByIdAsync(perfilDTO.Id.Value);
+            if (perfil == null) return string.Empty;
 
+            var systemURL = _configuration["systemURL"];
+            if (string.IsNullOrEmpty(systemURL))
+            {
+                Console.WriteLine("systemURL não configurado em appsettings.json. O RDF pode não ter URIs base.");
+                systemURL = "http://localhost:5000";
+            }
+
+            var g = new Graph();
+            g.BaseUri = new Uri(systemURL);
+
+            // Registrar namespaces
+            g.NamespaceMap.AddNamespace("foaf", new Uri("http://xmlns.com/foaf/0.1/"));
+            g.NamespaceMap.AddNamespace("schema", new Uri("http://schema.org/"));
+            g.NamespaceMap.AddNamespace("ex", new Uri($"{systemURL}/ontology#"));
+
+            // Sujeito: URI do perfil
+            var perfilUri = g.CreateUriNode(new Uri($"{systemURL}/Perfil/{perfil.Id}"));
+
+            // Tipagem
+            g.Assert(perfilUri, g.CreateUriNode("rdf:type"), g.CreateUriNode("schema:Thing"));
+
+            // Propriedades do Perfil
+            g.Assert(perfilUri, g.CreateUriNode("schema:name"), g.CreateLiteralNode(perfil.Nome));
+            g.Assert(perfilUri, g.CreateUriNode("schema:description"), g.CreateLiteralNode(perfil.Descricao));
+
+            // Ligar com recurso da DBpedia, SOMENTE SE A DESCRIÇÃO EXISTIR
+            if (!string.IsNullOrEmpty(perfil.Nome))
+            {
+                // Verifica se existe uma descrição para o termo no DBpedia
+                var dbpediaDescription = await _externalDataService.ObterDescricaoDbpedia(perfil.Nome);
+
+                if (!string.IsNullOrEmpty(dbpediaDescription)) // Se a descrição for encontrada, o recurso existe
+                {
+                    var dbpediaResourceUri = new Uri($"http://dbpedia.org/resource/{perfil.Nome.Replace(" ", "_")}");
+                    g.Assert(perfilUri, g.CreateUriNode("schema:mentions"), g.CreateUriNode(dbpediaResourceUri));
+                }
+            }
+
+            // Adicionar permissões como propriedades do perfil (código existente)
+            if (perfil.PerfisPermissao != null)
+            {
+                foreach (var pp in perfil.PerfisPermissao)
+                {
+                    if (pp.Permissao != null)
+                    {
+                        var permissaoUri = g.CreateUriNode(new Uri($"{systemURL}/Permissao/{pp.Permissao.Id}"));
+                        g.Assert(perfilUri, g.CreateUriNode("ex:hasPermission"), permissaoUri);
+                        g.Assert(permissaoUri, g.CreateUriNode("schema:name"), g.CreateLiteralNode(pp.Permissao.Nome));
+                        g.Assert(permissaoUri, g.CreateUriNode("ex:resource"), g.CreateLiteralNode(pp.Permissao.Recurso));
+                        g.Assert(permissaoUri, g.CreateUriNode("ex:action"), g.CreateLiteralNode(pp.Permissao.Acao));
+                    }
+                }
+            }
+
+            // Serializar o grafo para uma string RDF (formato Turtle)
+            var writer = new CompressingTurtleWriter();
+            using (var stream = new MemoryStream())
+            {
+                writer.Save(g, new StreamWriter(stream, Encoding.UTF8));
+                return Encoding.UTF8.GetString(stream.ToArray());
+            }
+        }
+
+    }
 }

@@ -7,6 +7,11 @@ using UsersManager.Application.Utils;
 using UsersManager.Data;
 using UsersManager.Data.Entities;
 using UsersManager.Data.Repositories;
+using VDS.RDF.Writing;
+using VDS.RDF;
+using VDS.RDF.Writing;
+using System.IO;
+using System.Text;
 
 public class UsuarioService : IUsuarioService
 {
@@ -16,8 +21,9 @@ public class UsuarioService : IUsuarioService
     private readonly IUnitOfWork _context;
     private readonly IPasswordHasher<Usuario> _passwordHasher;
     private readonly IHttpContextAccessor _httpContextAccessor;
+    private readonly IConfiguration _configuration;
 
-    public UsuarioService(IUnitOfWork context, IPasswordHasher<Usuario> passwordHasher, IRepository<Usuario> usuarioRepository, IRepository<Acesso> acessoRepository, IHttpContextAccessor httpContextAccessor, IRepository<Permissao> permissaoRepository)
+    public UsuarioService(IUnitOfWork context, IPasswordHasher<Usuario> passwordHasher, IRepository<Usuario> usuarioRepository, IRepository<Acesso> acessoRepository, IHttpContextAccessor httpContextAccessor, IRepository<Permissao> permissaoRepository, IConfiguration configuration)
     {
         _context = context;
         _passwordHasher = passwordHasher;
@@ -25,6 +31,7 @@ public class UsuarioService : IUsuarioService
         _acessoRepository = acessoRepository;
         _httpContextAccessor = httpContextAccessor;
         _permissaoRepository = permissaoRepository;
+        _configuration = configuration;
     }
 
     private async Task<IEnumerable<Permissao>> _GetPermissoesByUsuarioAsync(Usuario usuario)
@@ -316,5 +323,45 @@ public class UsuarioService : IUsuarioService
             return false;
         }
 
+    }
+
+    public string SerializeUser(Task<UsuarioDTO?> userTask)
+    {
+        var systemURL = _configuration["systemURL"];
+
+        var user = userTask.Result;
+        if (user == null) return string.Empty;
+
+        var g = new Graph();
+        g.BaseUri = new Uri(systemURL!);
+
+        // Registrar namespaces
+        g.NamespaceMap.AddNamespace("foaf", new Uri("http://xmlns.com/foaf/0.1/"));
+        g.NamespaceMap.AddNamespace("schema", new Uri("http://schema.org/"));
+
+        // Sujeito: URI do usuário
+        var userUri = g.CreateUriNode(new Uri($"{systemURL}/{user.Id}"));
+
+        // Tipagem
+        g.Assert(userUri, g.CreateUriNode("rdf:type"), g.CreateUriNode("foaf:Person"));
+
+        // Propriedades FOAF e schema
+        g.Assert(userUri, g.CreateUriNode("foaf:name"), g.CreateLiteralNode(user.Nome));
+        g.Assert(userUri, g.CreateUriNode("foaf:mbox"), g.CreateLiteralNode($"mailto:{user.Email}"));
+
+        if (!string.IsNullOrEmpty(user.NomePerfil))
+        {
+            g.Assert(userUri, g.CreateUriNode("schema:jobTitle"), g.CreateLiteralNode(user.NomePerfil));
+
+            // Liga com recurso da DBpedia
+            var perfilUri = new Uri($"http://dbpedia.org/resource/{user.NomePerfil.Replace(" ", "_")}");
+            g.Assert(userUri, g.CreateUriNode("foaf:based_near"), g.CreateUriNode(perfilUri));
+        }
+
+        // Serialização
+        var writer = new CompressingTurtleWriter();
+        using var sw = new System.IO.StringWriter();
+        writer.Save(g, sw);
+        return sw.ToString();
     }
 }

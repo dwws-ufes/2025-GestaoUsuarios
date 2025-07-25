@@ -35,9 +35,31 @@
             v-model="profileForm.nome"
             :label="t('profilesPage.name')"
             lazy-rules
-            :rules="[(val) => !!val || t('profilesPage.errors.nameRequired')]"
+            :rules="[(valor) => !!valor || t('profilesPage.errors.nameRequired')]"
             class="q-mb-md"
+            @update:model-value="
+              (valor) => {
+                if (!valor) {
+                  descricaoPerfil.value = ''
+                }
+              }
+            "
+            @blur="buscarDescricaoPerfil(profileForm.nome)"
           />
+
+          <q-banner
+            v-if="descricaoPerfil"
+            dense
+            class="q-mb-md bg-grey-3 text-dark"
+            style="border-left: 4px solid #1976d2"
+          >
+            <div>
+              <strong>{{ t('profilesPage.dbpediaInfoTitle') }}</strong>
+            </div>
+            <q-icon name="info" class="q-mr-sm" />
+            {{ descricaoPerfil }}
+          </q-banner>
+          <hr v-if="descricaoPerfil" />
           <q-input
             filled
             v-model="profileForm.descricao"
@@ -118,8 +140,20 @@
           >
             <q-tooltip>{{ t('profilesPage.deleteProfile') }}</q-tooltip>
           </q-btn>
+          <q-btn
+            flat
+            round
+            dense
+            icon="share"
+            color="info"
+            @click="exportSingleProfileToRdf(props.row)"
+            :aria-label="t('profilesPage.exportRdf')"
+          >
+            <q-tooltip>{{ t('profilesPage.exportRdf') }}</q-tooltip>
+          </q-btn>
         </q-td>
       </template>
+
       <template #loading>
         <q-inner-loading showing color="primary" />
       </template>
@@ -254,10 +288,11 @@
 
 <script setup>
 import { ref, computed, watch, onMounted } from 'vue'
-import { useQuasar } from 'quasar'
+import { useQuasar, exportFile } from 'quasar'
 import { useRoute, useRouter } from 'vue-router'
 import { useI18n } from 'vue-i18n'
 import { useCommonStore } from 'stores/common-store'
+import perfilService from 'src/services/perfilService'
 
 const { t } = useI18n()
 const $q = useQuasar()
@@ -269,7 +304,6 @@ const profileFilter = ref('')
 const showProfileForm = ref(false)
 const editModeProfile = ref(false)
 
-// profileForm agora armazenará objetos PermissaoDTO completos em 'permissoes'
 const profileForm = ref({
   id: null,
   nome: '',
@@ -277,7 +311,6 @@ const profileForm = ref({
   permissoes: [],
 })
 
-// Permissão CRUD Dialog State
 const showPermissionManager = ref(false)
 const permissionForm = ref({
   id: null,
@@ -287,8 +320,17 @@ const permissionForm = ref({
 })
 const editModePermission = ref(false)
 
-// Opções para o q-select de acaoActionEnum (garanta que estes correspondam ao seu enum no backend)
 const actionEnumOptions = ['Update', 'Delete', 'Read', 'Create']
+
+const descricaoPerfil = ref('')
+
+async function buscarDescricaoPerfil(perfilNome) {
+  if (!perfilNome) {
+    descricaoPerfil.value = ''
+    return
+  }
+  descricaoPerfil.value = await commonStore.fetchDescricaoPerfil(perfilNome)
+}
 
 const profileColumns = computed(() => [
   { name: 'nome', label: t('profilesPage.columns.name'), field: 'nome', sortable: true },
@@ -351,18 +393,18 @@ const filteredProfiles = computed(() => {
 
 function resetProfileForm() {
   profileForm.value = { id: null, nome: '', descricao: '', permissoes: [] }
+  descricaoPerfil.value = ''
 }
 
 async function toggleProfileForm(open, profile = null) {
   if (open) {
     if (profile) {
       editModeProfile.value = true
-      // Ao carregar um perfil para edição, `profile.permissoes` já deve ser um array de objetos PermissaoDTO.
-      // O q-select com `option-value="id"` e `option-label="nome"` espera objetos no v-model.
       profileForm.value = {
         ...profile,
-        permissoes: profile.permissoes || [], // Garante que é um array, mesmo que vazio
+        permissoes: profile.permissoes || [],
       }
+      await buscarDescricaoPerfil(profile.nome)
     } else {
       editModeProfile.value = false
       resetProfileForm()
@@ -381,7 +423,6 @@ async function saveProfile() {
   try {
     $q.loading.show({ message: t('profilesPage.loadingProfiles') })
 
-    // Payload para enviar para a API. `profileForm.permissoes` já contém os objetos completos.
     const payload = {
       ...profileForm.value,
     }
@@ -498,8 +539,6 @@ async function deletePermission(id) {
     await commonStore.deletePermission(id)
     $q.notify({ type: 'positive', message: t('profilesPage.permissionDeleted') })
 
-    // Remove a permissão da seleção atual do perfil se ela foi excluída
-    // Agora filtramos por objeto de permissão com base no Id
     profileForm.value.permissoes = profileForm.value.permissoes.filter(
       (permissionItem) => permissionItem.id !== id,
     )
@@ -520,9 +559,66 @@ async function deletePermission(id) {
   }
 }
 
-// Função chamada ao fechar o diálogo de gerenciamento de permissões
 function onPermissionManagerClose() {
   resetPermissionForm()
+}
+
+// --- Nova Função de Exportação para RDF por Perfil ---
+async function exportSingleProfileToRdf(profile) {
+  if (!profile || !profile.id) {
+    $q.notify({
+      type: 'negative',
+      message: t('profilesPage.errors.invalidProfileForExport'),
+      icon: 'error',
+      timeout: 3000,
+    })
+    return
+  }
+
+  $q.loading.show({ message: t('profilesPage.loadingExport') })
+  try {
+    // Chame um novo método no perfilService que exporta um único perfil por ID
+    // Você precisará adicionar este método em perfilService.js e no seu backend
+    const rdfContent = await perfilService.getPerfilRdf(profile.id)
+    if (rdfContent) {
+      const fileName = `${profile.nome.replace(/\s+/g, '_').toLowerCase()}.ttl` // Nome do arquivo baseado no nome do perfil
+      const status = exportFile(fileName, rdfContent, {
+        encoding: 'UTF-8',
+        mimeType: 'text/turtle', // MIME type para Turtle RDF
+      })
+
+      if (status !== true) {
+        $q.notify({
+          color: 'negative',
+          message: t('profilesPage.errors.exportFailed'),
+          icon: 'error',
+          timeout: 3000,
+        })
+      } else {
+        $q.notify({
+          color: 'positive',
+          message: t('profilesPage.exportSuccess', { filename: fileName }),
+          icon: 'check_circle',
+          timeout: 2000,
+        })
+      }
+    } else {
+      $q.notify({
+        color: 'negative',
+        message: t('profilesPage.errors.noDataToExport'),
+        icon: 'warning',
+        timeout: 3000,
+      })
+    }
+  } catch (error) {
+    console.error(`Error exporting profile ${profile.id} to RDF:`, error)
+    $q.notify({
+      type: 'negative',
+      message: error.message || t('profilesPage.errors.exportFailed'),
+    })
+  } finally {
+    $q.loading.hide()
+  }
 }
 
 // --- Watchers e Mounted ---
@@ -535,8 +631,7 @@ watch(
       try {
         const profileToEdit = await commonStore.fetchProfileById(id)
         if (profileToEdit) {
-          // O fetchProfileById deve retornar o perfil com permissoes como array de objetos completos.
-          profileToEdit.permissoes = profileToEdit.permissoes || [] // Garante que é um array
+          profileToEdit.permissoes = profileToEdit.permissoes || []
           toggleProfileForm(true, profileToEdit)
         } else {
           $q.notify({ type: 'negative', message: t('profilesPage.errors.profileNotFound') })

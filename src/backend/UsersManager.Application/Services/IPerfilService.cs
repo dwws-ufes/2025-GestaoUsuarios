@@ -12,6 +12,8 @@ namespace UsersManager.Application.Services
         Task<IEnumerable<PermissaoDTO>> ListarTodasPermissoes();
 
         Task<bool> DeletePermissoesAsync(params PermissaoDTO[] dtos);
+
+        Task<string> SerializePerfil(PerfilDTO perfilDTO);
     }
 
 }

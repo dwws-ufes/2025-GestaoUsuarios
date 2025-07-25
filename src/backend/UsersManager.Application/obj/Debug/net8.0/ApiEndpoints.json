@@ -100,6 +100,22 @@
   },
   {
     "ContainingType": "UsersManager.Application.Controllers.PerfilController",
+    "Method": "GetPerfilRdf",
+    "RelativePath": "api/Perfil/{id}.rdf",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "UsersManager.Application.Controllers.PerfilController",
     "Method": "AtualizarPermissoes",
     "RelativePath": "api/Perfil/{id}/permissoes",
     "HttpMethod": "PUT",
@@ -288,6 +304,38 @@
   },
   {
     "ContainingType": "UsersManager.Application.Controllers.UsuarioController",
+    "Method": "ObterUsuarioRDF",
+    "RelativePath": "api/Usuario/{id}.rdf",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "UsersManager.Application.Controllers.UsuarioController",
+    "Method": "ObterDescricaoCargo",
+    "RelativePath": "api/Usuario/{id}/descricaoCargo",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "UsersManager.Application.Controllers.UsuarioController",
     "Method": "GetAllAcessos",
     "RelativePath": "api/Usuario/acessos",
     "HttpMethod": "GET",
@@ -331,6 +379,27 @@
         "StatusCode": 200
       }
     ]
+  },
+  {
+    "ContainingType": "UsersManager.Application.Controllers.UsuarioController",
+    "Method": "ObterDescricaoCargo",
+    "RelativePath": "api/Usuario/descricaoCargo",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "termo",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "lang",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
   },
   {
     "ContainingType": "UsersManager.Application.Controllers.UsuarioController",

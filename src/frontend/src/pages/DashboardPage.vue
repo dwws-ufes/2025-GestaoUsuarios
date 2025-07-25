@@ -1,3 +1,4 @@
+<!-- /src/pages/DashBoardPage.vue-->
 <template>
   <q-page class="q-pa-md">
     <div class="row q-col-gutter-md">
