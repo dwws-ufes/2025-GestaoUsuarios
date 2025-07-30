@@ -41,6 +41,7 @@
               (valor) => {
                 if (!valor) {
                   descricaoPerfil.value = ''
+                  dbpediaNotFound.value = false // Limpa a mensagem de não encontrado
                 }
               }
             "
@@ -48,18 +49,28 @@
           />
 
           <q-banner
-            v-if="descricaoPerfil"
+            v-if="isLoadingDbpedia || descricaoPerfil || dbpediaNotFound"
             dense
             class="q-mb-md bg-grey-3 text-dark"
             style="border-left: 4px solid #1976d2"
           >
-            <div>
-              <strong>{{ t('profilesPage.dbpediaInfoTitle') }}</strong>
+            <div v-if="isLoadingDbpedia" class="row items-center">
+              <q-spinner color="primary" size="1.5em" class="q-mr-sm" />
+              <span>{{ t('profilesPage.loadingDbpedia') }}</span>
             </div>
-            <q-icon name="info" class="q-mr-sm" />
-            {{ descricaoPerfil }}
+            <div v-else-if="descricaoPerfil" class="row items-center">
+              <div>
+                <strong>{{ t('profilesPage.dbpediaInfoTitle') }}</strong>
+              </div>
+              <q-icon name="info" class="q-ml-sm" />
+              {{ descricaoPerfil }}
+            </div>
+            <div v-else-if="dbpediaNotFound" class="row items-center text-negative">
+              <q-icon name="warning" class="q-mr-sm" />
+              <span>{{ t('profilesPage.dbpediaNotFound') }}</span>
+            </div>
           </q-banner>
-          <hr v-if="descricaoPerfil" />
+          <hr v-if="descricaoPerfil || dbpediaNotFound" />
           <q-input
             filled
             v-model="profileForm.descricao"
@@ -323,13 +334,38 @@ const editModePermission = ref(false)
 const actionEnumOptions = ['Update', 'Delete', 'Read', 'Create']
 
 const descricaoPerfil = ref('')
+const isLoadingDbpedia = ref(false)
+const dbpediaNotFound = ref(false)
 
 async function buscarDescricaoPerfil(perfilNome) {
   if (!perfilNome) {
     descricaoPerfil.value = ''
+    dbpediaNotFound.value = false
     return
   }
-  descricaoPerfil.value = await commonStore.fetchDescricaoPerfil(perfilNome)
+
+  isLoadingDbpedia.value = true
+  dbpediaNotFound.value = false // Reseta a mensagem de não encontrado
+  descricaoPerfil.value = '' // Limpa a descrição anterior
+
+  try {
+    // Assumindo que commonStore.fetchDescricaoPerfil retorna a string da descrição diretamente
+    const responseDescription = await commonStore.fetchDescricaoPerfil(perfilNome)
+
+    if (responseDescription) {
+      // Se a string de descrição não for vazia/null
+      descricaoPerfil.value = responseDescription
+      // dbpediaNotFound.value já é false, não precisa mudar
+    } else {
+      dbpediaNotFound.value = true // Ativa a mensagem de não encontrado
+    }
+  } catch (error) {
+    console.error('Erro ao buscar descrição no DBpedia:', error)
+    // Em caso de erro, também consideramos como não encontrado
+    dbpediaNotFound.value = true
+  } finally {
+    isLoadingDbpedia.value = false // Desativa o loader
+  }
 }
 
 const profileColumns = computed(() => [
@@ -394,6 +430,7 @@ const filteredProfiles = computed(() => {
 function resetProfileForm() {
   profileForm.value = { id: null, nome: '', descricao: '', permissoes: [] }
   descricaoPerfil.value = ''
+  dbpediaNotFound.value = false // Reseta a mensagem de não encontrado
 }
 
 async function toggleProfileForm(open, profile = null) {
@@ -404,7 +441,13 @@ async function toggleProfileForm(open, profile = null) {
         ...profile,
         permissoes: profile.permissoes || [],
       }
-      await buscarDescricaoPerfil(profile.nome)
+      // Garante que a busca seja feita ao editar, para o nome atual do perfil
+      if (profile.nome) {
+        await buscarDescricaoPerfil(profile.nome)
+      } else {
+        descricaoPerfil.value = ''
+        dbpediaNotFound.value = false
+      }
     } else {
       editModeProfile.value = false
       resetProfileForm()
@@ -577,14 +620,12 @@ async function exportSingleProfileToRdf(profile) {
 
   $q.loading.show({ message: t('profilesPage.loadingExport') })
   try {
-    // Chame um novo método no perfilService que exporta um único perfil por ID
-    // Você precisará adicionar este método em perfilService.js e no seu backend
     const rdfContent = await perfilService.getPerfilRdf(profile.id)
     if (rdfContent) {
-      const fileName = `${profile.nome.replace(/\s+/g, '_').toLowerCase()}.ttl` // Nome do arquivo baseado no nome do perfil
+      const fileName = `${profile.nome.replace(/\s+/g, '_').toLowerCase()}.ttl`
       const status = exportFile(fileName, rdfContent, {
         encoding: 'UTF-8',
-        mimeType: 'text/turtle', // MIME type para Turtle RDF
+        mimeType: 'text/turtle',
       })
 
       if (status !== true) {

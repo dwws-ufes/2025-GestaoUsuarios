@@ -14,6 +14,8 @@ namespace UsersManager.Application.Services
         Task<bool> DeletePermissoesAsync(params PermissaoDTO[] dtos);
 
         Task<string> SerializePerfil(PerfilDTO perfilDTO);
+
+        Task<string> SerializePermissao(PermissaoDTO permissaoDTO);
     }
 
 }

@@ -169,6 +169,8 @@ export default {
     exportRdf: 'Exportar para RDF',
     exportSuccess: 'RDF exportado com sucesso!',
     loadingExport: 'Gerando arquivo RDF ...',
+    dbpediaNotFound: 'Termo não encontrado no DBpedia',
+    loadingDbpedia: 'Buscando no DBpedia...',
     errors: {
       nameRequired: 'O nome do perfil é obrigatório.',
       descriptionRequired: 'A descrição do perfil é obrigatória.',

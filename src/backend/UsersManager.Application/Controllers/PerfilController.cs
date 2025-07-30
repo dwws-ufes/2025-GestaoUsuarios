@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using UsersManager.Application.DTOs;
 using UsersManager.Application.Services;
+using UsersManager.Data.Entities;
 
 namespace UsersManager.Application.Controllers
 {
@@ -112,13 +113,14 @@ namespace UsersManager.Application.Controllers
 
         // GET: api/Perfil/permissoes
         [HttpGet("permissoes")]
-        public async Task<ActionResult<IEnumerable<PermissaoDTO>>> GetPermissoesByUsuarioId(int id)
+        public async Task<ActionResult<IEnumerable<PermissaoDTO>>> GetPermissoes()
         {
 
             var permissaoList = await _perfilService.ListarTodasPermissoes();
 
             return Ok(permissaoList);
         }
+
 
         // POST: api/Perfil/permissoes
         [HttpPost("permissoes")]
@@ -160,8 +162,9 @@ namespace UsersManager.Application.Controllers
 
         // === Perfil RDF ===
 
-        // GET: api/Perfil/{id}/rdf
+        // GET: api/Perfil/{id}.rdf
         [HttpGet("{id}.rdf")]
+        [AllowAnonymous]
         public async Task<IActionResult> GetPerfilRdf(int id)
         {
             var perfil = await _perfilService.ObterPorIdAsync(id);
@@ -170,6 +173,26 @@ namespace UsersManager.Application.Controllers
 
             var rdf = await _perfilService.SerializePerfil(perfil);
             return Content(rdf, "text/turtle"); // Retorna o conteúdo RDF no formato Turtle
+        }
+
+        // === Permissao RDF ===
+
+        // GET: api/Perfil/permissoes/{id}.rdf
+        [HttpGet("permissoes/{id}.rdf")]
+        [AllowAnonymous]
+        public async Task<ActionResult<IEnumerable<PermissaoDTO>>> GetPermissao(int id)
+        {
+
+            var permissao = (from u in await _perfilService.ListarTodasPermissoes()
+                             where u.Id.Equals(id)
+                             select u).FirstOrDefault();
+
+            if (permissao == null)
+                return NotFound();
+
+            var rdf = await _perfilService.SerializePermissao(permissao);
+            return Content(rdf, "text/turtle"); // Retorna o conteúdo RDF no formato Turtle
+
         }
     }
 }

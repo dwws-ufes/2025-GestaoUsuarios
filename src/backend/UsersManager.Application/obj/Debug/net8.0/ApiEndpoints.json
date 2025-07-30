@@ -137,18 +137,12 @@
   },
   {
     "ContainingType": "UsersManager.Application.Controllers.PerfilController",
-    "Method": "GetPermissoesByUsuarioId",
+    "Method": "GetPermissoes",
     "RelativePath": "api/Perfil/permissoes",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": false
-      }
-    ],
+    "Parameters": [],
     "ReturnTypes": [
       {
         "Type": "System.Collections.Generic.IEnumerable\u00601[[UsersManager.Application.DTOs.PermissaoDTO, UsersManager.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
@@ -202,6 +196,32 @@
       }
     ],
     "ReturnTypes": []
+  },
+  {
+    "ContainingType": "UsersManager.Application.Controllers.PerfilController",
+    "Method": "GetPermissao",
+    "RelativePath": "api/Perfil/permissoes/{id}.rdf",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[UsersManager.Application.DTOs.PermissaoDTO, UsersManager.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   },
   {
     "ContainingType": "UsersManager.Application.Controllers.UsuarioController",

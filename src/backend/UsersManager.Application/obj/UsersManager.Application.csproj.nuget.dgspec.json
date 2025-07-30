@@ -1,43 +1,39 @@
 {
   "format": 1,
   "restore": {
-    "E:\\Mestrado\\ProgramaçãoWeb\\git\\2025-GestaoUsuarios\\src\\backend\\UsersManager.Application\\UsersManager.Application.csproj": {}
+    "C:\\Mestrado\\ProgramaçãoWeb\\git\\2025-GestaoUsuarios\\src\\backend\\UsersManager.Application\\UsersManager.Application.csproj": {}
   },
   "projects": {
-    "E:\\Mestrado\\ProgramaçãoWeb\\git\\2025-GestaoUsuarios\\src\\backend\\UsersManager.Application\\UsersManager.Application.csproj": {
+    "C:\\Mestrado\\ProgramaçãoWeb\\git\\2025-GestaoUsuarios\\src\\backend\\UsersManager.Application\\UsersManager.Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Mestrado\\ProgramaçãoWeb\\git\\2025-GestaoUsuarios\\src\\backend\\UsersManager.Application\\UsersManager.Application.csproj",
+        "projectUniqueName": "C:\\Mestrado\\ProgramaçãoWeb\\git\\2025-GestaoUsuarios\\src\\backend\\UsersManager.Application\\UsersManager.Application.csproj",
         "projectName": "UsersManager.Application",
-        "projectPath": "E:\\Mestrado\\ProgramaçãoWeb\\git\\2025-GestaoUsuarios\\src\\backend\\UsersManager.Application\\UsersManager.Application.csproj",
-        "packagesPath": "C:\\Users\\gustavo.silveira\\.nuget\\packages\\",
-        "outputPath": "E:\\Mestrado\\ProgramaçãoWeb\\git\\2025-GestaoUsuarios\\src\\backend\\UsersManager.Application\\obj\\",
+        "projectPath": "C:\\Mestrado\\ProgramaçãoWeb\\git\\2025-GestaoUsuarios\\src\\backend\\UsersManager.Application\\UsersManager.Application.csproj",
+        "packagesPath": "C:\\Users\\iema\\.nuget\\packages\\",
+        "outputPath": "C:\\Mestrado\\ProgramaçãoWeb\\git\\2025-GestaoUsuarios\\src\\backend\\UsersManager.Application\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\",
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\gustavo.silveira\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\iema\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "E:\\Mestrado\\ProgramaçãoWeb\\git\\2025-GestaoUsuarios\\src\\backend\\UsersManager.Data\\UsersManager.Data.csproj": {
-                "projectPath": "E:\\Mestrado\\ProgramaçãoWeb\\git\\2025-GestaoUsuarios\\src\\backend\\UsersManager.Data\\UsersManager.Data.csproj"
+              "C:\\Mestrado\\ProgramaçãoWeb\\git\\2025-GestaoUsuarios\\src\\backend\\UsersManager.Data\\UsersManager.Data.csproj": {
+                "projectPath": "C:\\Mestrado\\ProgramaçãoWeb\\git\\2025-GestaoUsuarios\\src\\backend\\UsersManager.Data\\UsersManager.Data.csproj"
               }
             }
           }
@@ -52,7 +48,7 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "9.0.200"
+        "SdkAnalysisLevel": "9.0.300"
       },
       "frameworks": {
         "net8.0": {
@@ -110,36 +106,32 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.200/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.300/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "E:\\Mestrado\\ProgramaçãoWeb\\git\\2025-GestaoUsuarios\\src\\backend\\UsersManager.Data\\UsersManager.Data.csproj": {
+    "C:\\Mestrado\\ProgramaçãoWeb\\git\\2025-GestaoUsuarios\\src\\backend\\UsersManager.Data\\UsersManager.Data.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Mestrado\\ProgramaçãoWeb\\git\\2025-GestaoUsuarios\\src\\backend\\UsersManager.Data\\UsersManager.Data.csproj",
+        "projectUniqueName": "C:\\Mestrado\\ProgramaçãoWeb\\git\\2025-GestaoUsuarios\\src\\backend\\UsersManager.Data\\UsersManager.Data.csproj",
         "projectName": "UsersManager.Data",
-        "projectPath": "E:\\Mestrado\\ProgramaçãoWeb\\git\\2025-GestaoUsuarios\\src\\backend\\UsersManager.Data\\UsersManager.Data.csproj",
-        "packagesPath": "C:\\Users\\gustavo.silveira\\.nuget\\packages\\",
-        "outputPath": "E:\\Mestrado\\ProgramaçãoWeb\\git\\2025-GestaoUsuarios\\src\\backend\\UsersManager.Data\\obj\\",
+        "projectPath": "C:\\Mestrado\\ProgramaçãoWeb\\git\\2025-GestaoUsuarios\\src\\backend\\UsersManager.Data\\UsersManager.Data.csproj",
+        "packagesPath": "C:\\Users\\iema\\.nuget\\packages\\",
+        "outputPath": "C:\\Mestrado\\ProgramaçãoWeb\\git\\2025-GestaoUsuarios\\src\\backend\\UsersManager.Data\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\",
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\gustavo.silveira\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\iema\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -158,7 +150,7 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "9.0.200"
+        "SdkAnalysisLevel": "9.0.300"
       },
       "frameworks": {
         "net8.0": {
@@ -209,7 +201,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.200/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.300/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

@@ -192,6 +192,7 @@ namespace UsersManager.Application.Controllers
 
 
         [HttpGet("{id}.rdf")]
+        [AllowAnonymous]
         public async Task<IActionResult> ObterUsuarioRDF(int id)
         {
             var usuario = await _usuarioService.ObterPorIdAsync(id);

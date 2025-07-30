@@ -340,7 +340,7 @@ public class UsuarioService : IUsuarioService
         g.NamespaceMap.AddNamespace("schema", new Uri("http://schema.org/"));
 
         // Sujeito: URI do usuário
-        var userUri = g.CreateUriNode(new Uri($"{systemURL}/{user.Id}"));
+        var userUri = g.CreateUriNode(new Uri($"{systemURL}/Usuario/{user.Id}.rdf"));
 
         // Tipagem
         g.Assert(userUri, g.CreateUriNode("rdf:type"), g.CreateUriNode("foaf:Person"));

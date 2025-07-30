@@ -22,7 +22,7 @@ namespace UsersManager.Application.Services
         private readonly IRepository<Permissao> _permissaoRepository;
         private readonly IUnitOfWork _context;
         private readonly IConfiguration _configuration;
-        private readonly IExternalDataService _externalDataService; 
+        private readonly IExternalDataService _externalDataService;
 
         public PerfilService(IUnitOfWork unitOfWork, IRepository<Perfil> perfilRepository, IRepository<Permissao> permissaoRepository, IConfiguration configuration, IExternalDataService externalDataService)
         {
@@ -273,7 +273,7 @@ namespace UsersManager.Application.Services
             g.NamespaceMap.AddNamespace("ex", new Uri($"{systemURL}/ontology#"));
 
             // Sujeito: URI do perfil
-            var perfilUri = g.CreateUriNode(new Uri($"{systemURL}/Perfil/{perfil.Id}"));
+            var perfilUri = g.CreateUriNode(new Uri($"{systemURL}/Perfil/{perfil.Id}.rdf"));
 
             // Tipagem
             g.Assert(perfilUri, g.CreateUriNode("rdf:type"), g.CreateUriNode("schema:Thing"));
@@ -302,7 +302,7 @@ namespace UsersManager.Application.Services
                 {
                     if (pp.Permissao != null)
                     {
-                        var permissaoUri = g.CreateUriNode(new Uri($"{systemURL}/Permissao/{pp.Permissao.Id}"));
+                        var permissaoUri = g.CreateUriNode(new Uri($"{systemURL}/Perfil/permissoes/{pp.Permissao.Id}.rdf"));
                         g.Assert(perfilUri, g.CreateUriNode("ex:hasPermission"), permissaoUri);
                         g.Assert(permissaoUri, g.CreateUriNode("schema:name"), g.CreateLiteralNode(pp.Permissao.Nome));
                         g.Assert(permissaoUri, g.CreateUriNode("ex:resource"), g.CreateLiteralNode(pp.Permissao.Recurso));
@@ -320,5 +320,57 @@ namespace UsersManager.Application.Services
             }
         }
 
+        public async Task<string> SerializePermissao(PermissaoDTO permissaoDto)
+        {
+            if (permissaoDto == null) return string.Empty;
+
+            var systemURL = _configuration["systemURL"];
+            if (string.IsNullOrEmpty(systemURL))
+            {
+                Console.WriteLine("systemURL não configurado em appsettings.json. O RDF pode não ter URIs base.");
+                systemURL = "http://localhost:5000"; // Fallback
+            }
+
+            var g = new Graph();
+            g.BaseUri = new Uri(systemURL);
+
+            // Registrar namespaces
+            g.NamespaceMap.AddNamespace("foaf", new Uri("http://xmlns.com/foaf/0.1/"));
+            g.NamespaceMap.AddNamespace("schema", new Uri("http://schema.org/"));
+            g.NamespaceMap.AddNamespace("ex", new Uri($"{systemURL}/ontology#")); // Seu namespace customizado
+
+            // Sujeito: URI da permissão
+            var permissaoUri = g.CreateUriNode(new Uri($"{systemURL}/Permissao/{permissaoDto.Id}"));
+
+            // Tipagem da permissão
+            // Você pode usar uma classe mais específica do Schema.org ou uma própria, como ex:Permission
+            g.Assert(permissaoUri, g.CreateUriNode("rdf:type"), g.CreateUriNode("schema:Action")); // Ou ex:Permission, schema:Permission
+
+            // Propriedades da Permissão
+            g.Assert(permissaoUri, g.CreateUriNode("schema:name"), g.CreateLiteralNode(permissaoDto.Nome));
+            g.Assert(permissaoUri, g.CreateUriNode("ex:resource"), g.CreateLiteralNode(permissaoDto.Recurso));
+            g.Assert(permissaoUri, g.CreateUriNode("ex:actionType"), g.CreateLiteralNode(permissaoDto.Acao.ToString())); // Usando 'actionType' para evitar conflito com schema:Action
+
+            // Opcional: Ligar a um recurso DBpedia para o 'nome' ou 'recurso' da permissão
+            // Por exemplo, se o Recurso for "Usuário" ou "Documento", pode haver um link.
+            if (!string.IsNullOrEmpty(permissaoDto.Recurso))
+            {
+                var dbpediaDescriptionForResource = await _externalDataService.ObterDescricaoDbpedia(permissaoDto.Recurso);
+                if (!string.IsNullOrEmpty(dbpediaDescriptionForResource))
+                {
+                    var dbpediaResourceUri = new Uri($"http://dbpedia.org/resource/{permissaoDto.Recurso.Replace(" ", "_")}");
+                    g.Assert(permissaoUri, g.CreateUriNode("schema:about"), g.CreateUriNode(dbpediaResourceUri)); // Exemplo de propriedade
+                }
+            }
+
+
+            // Serializar o grafo para uma string RDF (formato Turtle)
+            var writer = new CompressingTurtleWriter();
+            using (var stream = new MemoryStream())
+            {
+                writer.Save(g, new StreamWriter(stream, Encoding.UTF8));
+                return Encoding.UTF8.GetString(stream.ToArray());
+            }
+        }
     }
 }
