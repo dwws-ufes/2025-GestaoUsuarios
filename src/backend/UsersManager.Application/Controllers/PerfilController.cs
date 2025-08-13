@@ -172,7 +172,7 @@ namespace UsersManager.Application.Controllers
                 return NotFound();
 
             var rdf = await _perfilService.SerializePerfil(perfil);
-            return Content(rdf, "text/turtle"); // Retorna o conteúdo RDF no formato Turtle
+            return Content(rdf, "text/turtle");
         }
 
         // === Permissao RDF ===

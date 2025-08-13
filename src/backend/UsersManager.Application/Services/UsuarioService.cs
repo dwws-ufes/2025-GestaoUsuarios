@@ -1,17 +1,17 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using System.IO;
 using System.Net;
+using System.Text;
 using UsersManager.Application.DTOs;
 using UsersManager.Application.Services;
 using UsersManager.Application.Utils;
 using UsersManager.Data;
 using UsersManager.Data.Entities;
 using UsersManager.Data.Repositories;
-using VDS.RDF.Writing;
 using VDS.RDF;
+using VDS.RDF.Parsing;
 using VDS.RDF.Writing;
-using System.IO;
-using System.Text;
 
 public class UsuarioService : IUsuarioService
 {
@@ -22,8 +22,14 @@ public class UsuarioService : IUsuarioService
     private readonly IPasswordHasher<Usuario> _passwordHasher;
     private readonly IHttpContextAccessor _httpContextAccessor;
     private readonly IConfiguration _configuration;
+    private readonly IExternalDataService _externalDataService;
 
-    public UsuarioService(IUnitOfWork context, IPasswordHasher<Usuario> passwordHasher, IRepository<Usuario> usuarioRepository, IRepository<Acesso> acessoRepository, IHttpContextAccessor httpContextAccessor, IRepository<Permissao> permissaoRepository, IConfiguration configuration)
+    // Adiciona um campo para a ontologia
+    private readonly Graph _ontologyGraph;
+    private readonly NamespaceMapper _nsMapper;
+    private readonly Uri _ontologyNamespaceUri;
+
+    public UsuarioService(IUnitOfWork context, IPasswordHasher<Usuario> passwordHasher, IRepository<Usuario> usuarioRepository, IRepository<Acesso> acessoRepository, IHttpContextAccessor httpContextAccessor, IRepository<Permissao> permissaoRepository, IConfiguration configuration, IExternalDataService externalDataService)
     {
         _context = context;
         _passwordHasher = passwordHasher;
@@ -32,6 +38,25 @@ public class UsuarioService : IUsuarioService
         _httpContextAccessor = httpContextAccessor;
         _permissaoRepository = permissaoRepository;
         _configuration = configuration;
+        _externalDataService = externalDataService;
+
+        var systemURL = _configuration["systemURL"];
+        if (string.IsNullOrEmpty(systemURL))
+        {
+            Console.WriteLine("systemURL não configurado em appsettings.json. O RDF pode não ter URIs base.");
+            systemURL = "http://localhost:5000"; // Fallback
+        }
+        _ontologyNamespaceUri = new Uri($"{systemURL}/ontology/vocabulary#");
+
+        // Carrega a ontologia no construtor para reutilização
+        _ontologyGraph = new Graph();
+        FileInfo fi = new FileInfo("UsersManager.owl");
+        FileInfo fiTemp = new FileInfo(Path.Combine(fi.Directory.FullName, Guid.NewGuid().ToString() + ".owl"));
+        var content = File.ReadAllText(fi.FullName).Replace("http://www.meusite.com/UsersManager-vocabulario#", _ontologyNamespaceUri.AbsoluteUri);
+        File.WriteAllText(fiTemp.FullName, content);
+        _ontologyGraph.LoadFromFile(fiTemp.FullName);
+        _nsMapper = (NamespaceMapper?)_ontologyGraph.NamespaceMap;
+        File.Delete(fiTemp.FullName);
     }
 
     private async Task<IEnumerable<Permissao>> _GetPermissoesByUsuarioAsync(Usuario usuario)
@@ -146,13 +171,13 @@ public class UsuarioService : IUsuarioService
         // Inicia a query base sem filtro de data ou sucesso/falha
         var query = await _acessoRepository.FindAsync(
 
-      predicate: p => p.Id > 0,
+            predicate: p => p.Id > 0,
 
-      include: query => query
+            include: query => query
 
-        .Include(u => u.Usuario)
+                .Include(u => u.Usuario)
 
-    );
+        );
 
         // Converte para IQueryable para aplicar filtros e ordenação antes de executar a query no banco
         var acessosQuery = (query).AsQueryable();
@@ -325,7 +350,7 @@ public class UsuarioService : IUsuarioService
 
     }
 
-    public string SerializeUser(Task<UsuarioDTO?> userTask)
+    public string SerializeUserFoaf(Task<UsuarioDTO?> userTask)
     {
         var systemURL = _configuration["systemURL"];
 
@@ -335,27 +360,35 @@ public class UsuarioService : IUsuarioService
         var g = new Graph();
         g.BaseUri = new Uri(systemURL!);
 
-        // Registrar namespaces
+        // Adicionar os namespaces necessários
         g.NamespaceMap.AddNamespace("foaf", new Uri("http://xmlns.com/foaf/0.1/"));
         g.NamespaceMap.AddNamespace("schema", new Uri("http://schema.org/"));
+        g.NamespaceMap.AddNamespace("gr", new Uri("http://purl.org/goodrelations/v1#"));
 
         // Sujeito: URI do usuário
         var userUri = g.CreateUriNode(new Uri($"{systemURL}/Usuario/{user.Id}.rdf"));
 
-        // Tipagem
+        // Tipagem: o usuário é apenas uma Pessoa
         g.Assert(userUri, g.CreateUriNode("rdf:type"), g.CreateUriNode("foaf:Person"));
 
-        // Propriedades FOAF e schema
+        // Propriedades FOAF
         g.Assert(userUri, g.CreateUriNode("foaf:name"), g.CreateLiteralNode(user.Nome));
         g.Assert(userUri, g.CreateUriNode("foaf:mbox"), g.CreateLiteralNode($"mailto:{user.Email}"));
 
         if (!string.IsNullOrEmpty(user.NomePerfil))
         {
-            g.Assert(userUri, g.CreateUriNode("schema:jobTitle"), g.CreateLiteralNode(user.NomePerfil));
+            // 1. Criar um nó para a função de negócio
+            // Usar um URN (urn:uuid) para ter um identificador único sem criar uma nova página na URL do sistema
+            var businessFunctionNode = g.CreateUriNode("gr:BusinessFunction");
 
-            // Liga com recurso da DBpedia
-            var perfilUri = new Uri($"http://dbpedia.org/resource/{user.NomePerfil.Replace(" ", "_")}");
-            g.Assert(userUri, g.CreateUriNode("foaf:based_near"), g.CreateUriNode(perfilUri));
+            // 2. Descrever a função de negócio
+            g.Assert(businessFunctionNode, g.CreateUriNode("gr:description"), g.CreateLiteralNode(user.NomePerfil, "pt"));
+
+            // 3. Conectar o usuário à função de negócio
+            g.Assert(userUri, g.CreateUriNode("gr:hasBusinessFunction"), businessFunctionNode);
+
+            // Opcional: Adicionar a propriedade schema:jobTitle para complementar
+            g.Assert(userUri, g.CreateUriNode("schema:jobTitle"), g.CreateLiteralNode(user.NomePerfil));
         }
 
         // Serialização
@@ -363,5 +396,76 @@ public class UsuarioService : IUsuarioService
         using var sw = new System.IO.StringWriter();
         writer.Save(g, sw);
         return sw.ToString();
+    }
+
+    /// <summary>
+    /// Serializa um objeto UsuarioDTO para o formato RDF (Turtle) usando a ontologia personalizada.
+    /// </summary>
+    /// <param name="usuarioDto">O DTO do usuário a ser serializado.</param>
+    /// <returns>Uma string contendo a representação RDF do usuário.</returns>
+    public async Task<string> SerializeUser(UsuarioDTO usuarioDto)
+    {
+        if (usuarioDto == null) return string.Empty;
+
+        var systemURL = _configuration["systemURL"];
+        if (string.IsNullOrEmpty(systemURL))
+        {
+            Console.WriteLine("systemURL não configurado em appsettings.json. O RDF pode não ter URIs base.");
+            systemURL = "http://localhost:5000"; // Fallback
+        }
+
+        var g = new Graph();
+        g.BaseUri = new Uri(systemURL);
+
+        // Adicionando o namespace da sua ontologia e outros namespaces
+        g.NamespaceMap.AddNamespace("um_voc", _ontologyNamespaceUri);
+        g.NamespaceMap.AddNamespace("schema", new Uri("http://schema.org/"));
+
+        // Sujeito: URI do usuário
+        var usuarioUri = g.CreateUriNode(new Uri($"{systemURL}/Usuario/{usuarioDto.Id}.rdf"));
+
+        // Tipagem da permissão (usando a classe 'Usuario' da sua ontologia)
+        var usuarioClass = g.CreateUriNode("um_voc:Usuario");
+        g.Assert(usuarioUri, g.CreateUriNode("rdf:type"), usuarioClass);
+
+        // Propriedades do usuário (usando o vocabulário da sua ontologia)
+        var hasNameProperty = g.CreateUriNode("um_voc:hasName");
+        var hasEmailProperty = g.CreateUriNode("um_voc:hasEmail");
+        var hasProfileProperty = g.CreateUriNode("um_voc:hasProfile");
+
+        g.Assert(usuarioUri, hasNameProperty, g.CreateLiteralNode(usuarioDto.Nome));
+        g.Assert(usuarioUri, hasEmailProperty, g.CreateLiteralNode(usuarioDto.Email));
+
+        // Ligar o usuário a um recurso DBpedia para o 'nome'
+        if (!string.IsNullOrEmpty(usuarioDto.Nome))
+        {
+            var dbpediaDescription = await _externalDataService.ObterDescricaoDbpedia(usuarioDto.Nome);
+            if (!string.IsNullOrEmpty(dbpediaDescription))
+            {
+                var dbpediaResourceUri = new Uri($"http://dbpedia.org/resource/{usuarioDto.Nome.Replace(" ", "_")}");
+                g.Assert(usuarioUri, g.CreateUriNode("schema:mentions"), g.CreateUriNode(dbpediaResourceUri));
+            }
+        }
+
+        // Adicionar perfis como recursos associados ao usuário
+        if (usuarioDto.Perfis != null)
+        {
+            foreach (var perfilDto in usuarioDto.Perfis)
+            {
+                if (perfilDto.Id.HasValue)
+                {
+                    var perfilUri = g.CreateUriNode(new Uri($"{systemURL}/Perfil/{perfilDto.Id}.rdf"));
+                    g.Assert(usuarioUri, hasProfileProperty, perfilUri);
+                }
+            }
+        }
+
+        // Serializar o grafo para uma string RDF (formato Turtle)
+        var writer = new CompressingTurtleWriter();
+        using (var stream = new MemoryStream())
+        {
+            writer.Save(g, new StreamWriter(stream, Encoding.UTF8));
+            return Encoding.UTF8.GetString(stream.ToArray());
+        }
     }
 }

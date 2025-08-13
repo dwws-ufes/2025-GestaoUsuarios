@@ -155,9 +155,9 @@
             flat
             round
             dense
-            icon="share"
+            icon="open_in_new"
             color="info"
-            @click="exportSingleProfileToRdf(props.row)"
+            @click="openSingleProfileRdf(props.row)"
             :aria-label="t('profilesPage.exportRdf')"
           >
             <q-tooltip>{{ t('profilesPage.exportRdf') }}</q-tooltip>
@@ -299,7 +299,7 @@
 
 <script setup>
 import { ref, computed, watch, onMounted } from 'vue'
-import { useQuasar, exportFile } from 'quasar'
+import { useQuasar } from 'quasar'
 import { useRoute, useRouter } from 'vue-router'
 import { useI18n } from 'vue-i18n'
 import { useCommonStore } from 'stores/common-store'
@@ -606,8 +606,8 @@ function onPermissionManagerClose() {
   resetPermissionForm()
 }
 
-// --- Nova Função de Exportação para RDF por Perfil ---
-async function exportSingleProfileToRdf(profile) {
+// --- Nova Função para abrir o RDF por Perfil em uma nova aba ---
+function openSingleProfileRdf(profile) {
   if (!profile || !profile.id) {
     $q.notify({
       type: 'negative',
@@ -617,49 +617,10 @@ async function exportSingleProfileToRdf(profile) {
     })
     return
   }
-
-  $q.loading.show({ message: t('profilesPage.loadingExport') })
-  try {
-    const rdfContent = await perfilService.getPerfilRdf(profile.id)
-    if (rdfContent) {
-      const fileName = `${profile.nome.replace(/\s+/g, '_').toLowerCase()}.ttl`
-      const status = exportFile(fileName, rdfContent, {
-        encoding: 'UTF-8',
-        mimeType: 'text/turtle',
-      })
-
-      if (status !== true) {
-        $q.notify({
-          color: 'negative',
-          message: t('profilesPage.errors.exportFailed'),
-          icon: 'error',
-          timeout: 3000,
-        })
-      } else {
-        $q.notify({
-          color: 'positive',
-          message: t('profilesPage.exportSuccess', { filename: fileName }),
-          icon: 'check_circle',
-          timeout: 2000,
-        })
-      }
-    } else {
-      $q.notify({
-        color: 'negative',
-        message: t('profilesPage.errors.noDataToExport'),
-        icon: 'warning',
-        timeout: 3000,
-      })
-    }
-  } catch (error) {
-    console.error(`Error exporting profile ${profile.id} to RDF:`, error)
-    $q.notify({
-      type: 'negative',
-      message: error.message || t('profilesPage.errors.exportFailed'),
-    })
-  } finally {
-    $q.loading.hide()
-  }
+  // Chama a função do serviço que irá construir a URL e abrir a nova aba.
+  // Não há necessidade de usar `try...catch` ou `loading.show` aqui,
+  // pois a ação é direta no navegador.
+  perfilService.openPerfilRdf(profile.id)
 }
 
 // --- Watchers e Mounted ---

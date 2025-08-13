@@ -1,7 +1,6 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
@@ -9,9 +8,10 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using UsersManager.Application.Services;
 using UsersManager.Data;
-using UsersManager.Data;
 using UsersManager.Data.Entities;
 using UsersManager.Data.Repositories;
+using VDS.RDF;
+using VDS.RDF.Ontology;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -58,7 +58,6 @@ builder.Services.AddSingleton<IExternalDataService, ExternalDataService>();
 
 builder.Services.AddScoped<IPasswordHasher<Usuario>, PasswordHasher<Usuario>>();
 
-
 builder.Services.AddHttpContextAccessor();
 
 // Adiciona os serviços da aplicação
@@ -66,7 +65,10 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowFrontend", policy =>
     {
-        policy.WithOrigins("http://localhost:9000", "https://localhost:9000") 
+        policy.WithOrigins("http://localhost:9000", 
+                           "https://localhost:9000", 
+                           "http://localhost:9001", 
+                           "https://localhost:9001")
               .AllowAnyHeader()
               .AllowAnyMethod();
     });
@@ -75,7 +77,7 @@ builder.Services.AddControllers().AddJsonOptions(options =>
 {
     options.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
     options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
-}); 
+});
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(options =>
 {
@@ -147,6 +149,33 @@ app.UseCors("AllowFrontend");
 
 app.UseAuthentication();
 app.UseAuthorization();
+
+// --- Rota para servir o arquivo OWL da ontologia ---
+app.MapGet("/api/ontology/vocabulary", async (HttpContext httpContext, IConfiguration configuration) =>
+{
+    // O nome do arquivo OWL deve ser "UsersManager.owl" e estar na raiz do projeto.
+    var systemURL = configuration["systemURL"];
+    if (string.IsNullOrEmpty(systemURL))
+    {
+        Console.WriteLine("systemURL não configurado em appsettings.json. O RDF pode não ter URIs base.");
+        systemURL = "http://localhost:5000"; // Fallback
+    }
+    var uri = new Uri($"{systemURL}/ontology/vocabulary#");
+
+    FileInfo fi = new FileInfo("UsersManager.owl");
+    FileInfo fiTemp = new FileInfo(Path.Combine(fi.Directory.FullName, Guid.NewGuid().ToString() + ".owl"));
+    var content = File.ReadAllText(fi.FullName).Replace("http://www.meusite.com/UsersManager-vocabulario#", uri.AbsolutePath);
+    if (!String.IsNullOrWhiteSpace(content))
+    {
+        httpContext.Response.ContentType = "application/xml";
+        await httpContext.Response.WriteAsync(content);
+    }
+    else
+    {
+        httpContext.Response.StatusCode = StatusCodes.Status404NotFound;
+        await httpContext.Response.WriteAsync("Ontology file not found.");
+    }
+});
 
 app.MapControllers();
 

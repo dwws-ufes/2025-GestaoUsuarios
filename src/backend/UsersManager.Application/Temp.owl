@@ -1,0 +1,77 @@
+<?xml version="1.0"?>
+<rdf:RDF
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+    xmlns:my_voc="http://localhost:5051/api/ontology/vocabulary#"
+    xmlns:schema="http://schema.org/">
+
+
+	<owl:Ontology rdf:about="http://localhost:5051/api/ontology/vocabulary#">
+		<rdfs:comment>Ontologia para o sistema de gerenciamento de usuários e permissões.</rdfs:comment>
+	</owl:Ontology>
+
+	<!-- Definição das Classes -->
+
+	<owl:Class rdf:about="my_voc:Usuario">
+		<rdfs:comment>Representa um usuário no sistema.</rdfs:comment>
+	</owl:Class>
+
+	<owl:Class rdf:about="my_voc:Perfil">
+		<rdfs:comment>Representa um perfil de permissões.</rdfs:comment>
+	</owl:Class>
+
+	<owl:Class rdf:about="my_voc:Permissao">
+		<rdfs:comment>Representa uma permissão específica.</rdfs:comment>
+	</owl:Class>
+
+	<!-- Propriedades de Objeto (Relacionamentos entre Classes) -->
+
+	<owl:ObjectProperty rdf:about="my_voc:hasProfile">
+		<rdfs:comment>Propriedade que relaciona um Usuário a um Perfil.</rdfs:comment>
+		<rdfs:domain rdf:resource="my_voc:Usuario"/>
+		<rdfs:range rdf:resource="my_voc:Perfil"/>
+	</owl:ObjectProperty>
+
+	<owl:ObjectProperty rdf:about="my_voc:hasPermission">
+		<rdfs:comment>Propriedade que relaciona um Perfil a uma Permissao.</rdfs:comment>
+		<rdfs:domain rdf:resource="my_voc:Perfil"/>
+		<rdfs:range rdf:resource="my_voc:Permissao"/>
+	</owl:ObjectProperty>
+
+	<!-- Propriedades de Dados (Características com valores literais) -->
+
+	<owl:DatatypeProperty rdf:about="my_voc:hasName">
+		<rdfs:comment>Propriedade que armazena o nome de um objeto (Usuário, Perfil, Permissão).</rdfs:comment>
+		<rdfs:domain rdf:resource="my_voc:Usuario"/>
+		<rdfs:domain rdf:resource="my_voc:Perfil"/>
+		<rdfs:domain rdf:resource="my_voc:Permissao"/>
+		<rdfs:range rdf:resource="xsd:string"/>
+	</owl:DatatypeProperty>
+
+	<owl:DatatypeProperty rdf:about="my_voc:hasEmail">
+		<rdfs:comment>Propriedade que armazena o email de um Usuário.</rdfs:comment>
+		<rdfs:domain rdf:resource="my_voc:Usuario"/>
+		<rdfs:range rdf:resource="xsd:string"/>
+	</owl:DatatypeProperty>
+
+	<owl:DatatypeProperty rdf:about="my_voc:hasDescription">
+		<rdfs:comment>Propriedade que armazena a descrição de um Perfil.</rdfs:comment>
+		<rdfs:domain rdf:resource="my_voc:Perfil"/>
+		<rdfs:range rdf:resource="xsd:string"/>
+	</owl:DatatypeProperty>
+
+	<owl:DatatypeProperty rdf:about="my_voc:hasResource">
+		<rdfs:comment>Propriedade que armazena o recurso de uma Permissao.</rdfs:comment>
+		<rdfs:domain rdf:resource="my_voc:Permissao"/>
+		<rdfs:range rdf:resource="xsd:string"/>
+	</owl:DatatypeProperty>
+
+	<owl:DatatypeProperty rdf:about="my_voc:hasAction">
+		<rdfs:comment>Propriedade que armazena a ação de uma Permissao.</rdfs:comment>
+		<rdfs:domain rdf:resource="my_voc:Permissao"/>
+		<rdfs:range rdf:resource="xsd:string"/>
+	</owl:DatatypeProperty>
+
+</rdf:RDF>

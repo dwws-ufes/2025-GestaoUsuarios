@@ -394,3 +394,4 @@ C:\Mestrado\ProgramaçãoWeb\git\2025-GestaoUsuarios\src\backend\UsersManager.Ap
 C:\Mestrado\ProgramaçãoWeb\git\2025-GestaoUsuarios\src\backend\UsersManager.Application\obj\Debug\net8.0\UsersManager.Application.genruntimeconfig.cache
 C:\Mestrado\ProgramaçãoWeb\git\2025-GestaoUsuarios\src\backend\UsersManager.Application\obj\Debug\net8.0\ref\UsersManager.Application.dll
 C:\Mestrado\ProgramaçãoWeb\git\2025-GestaoUsuarios\src\backend\UsersManager.Application\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
+C:\Mestrado\ProgramaçãoWeb\git\2025-GestaoUsuarios\src\backend\UsersManager.Application\bin\Debug\net8.0\dbpedia_cache.json

@@ -394,6 +394,18 @@
         }
       }
     },
+    "/api/ontology/vocabulary": {
+      "get": {
+        "tags": [
+          "UsersManager.Application"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/Usuario/Login": {
       "post": {
         "tags": [

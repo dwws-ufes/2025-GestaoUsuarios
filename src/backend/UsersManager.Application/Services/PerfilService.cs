@@ -24,6 +24,11 @@ namespace UsersManager.Application.Services
         private readonly IConfiguration _configuration;
         private readonly IExternalDataService _externalDataService;
 
+        // Adiciona um campo para a ontologia
+        private readonly Graph _ontologyGraph;
+        private readonly NamespaceMapper _nsMapper;
+        private readonly Uri _ontologyNamespaceUri ;
+
         public PerfilService(IUnitOfWork unitOfWork, IRepository<Perfil> perfilRepository, IRepository<Permissao> permissaoRepository, IConfiguration configuration, IExternalDataService externalDataService)
         {
             _context = unitOfWork;
@@ -31,6 +36,23 @@ namespace UsersManager.Application.Services
             _permissaoRepository = permissaoRepository;
             _configuration = configuration;
             _externalDataService = externalDataService;
+            var systemURL = _configuration["systemURL"];
+            if (string.IsNullOrEmpty(systemURL))
+            {
+                Console.WriteLine("systemURL não configurado em appsettings.json. O RDF pode não ter URIs base.");
+                systemURL = "http://localhost:5000"; // Fallback
+            }
+            _ontologyNamespaceUri = new Uri($"{systemURL}/ontology/vocabulary#");
+
+            // Carrega a ontologia no construtor para reutilização
+            _ontologyGraph = new Graph();
+            FileInfo fi = new FileInfo("UsersManager.owl");
+            FileInfo fiTemp = new FileInfo(Path.Combine(fi.Directory.FullName, Guid.NewGuid().ToString()+".owl"));
+            var content = File.ReadAllText(fi.FullName).Replace("http://www.meusite.com/UsersManager-vocabulario#", _ontologyNamespaceUri.AbsoluteUri);
+            File.WriteAllText(fiTemp.FullName, content);
+            _ontologyGraph.LoadFromFile(fiTemp.FullName);
+            _nsMapper = (NamespaceMapper?)_ontologyGraph.NamespaceMap;
+            File.Delete(fiTemp.FullName);
         }
 
         public async Task<IEnumerable<PerfilDTO>> ListarTodosAsync()
@@ -76,9 +98,10 @@ namespace UsersManager.Application.Services
             };
         }
 
-
         public async Task<PerfilDTO> SaveAsync(PerfilDTO dto)
         {
+            // ... (restante do método SaveAsync permanece o mesmo) ...
+
             // 1. Carrega o perfil existente ou cria um novo
             Perfil perfil;
             if (dto.Id.HasValue && dto.Id.Value > 0)
@@ -251,67 +274,77 @@ namespace UsersManager.Application.Services
             return permissoes;
         }
 
-        // Implementação do novo método SerializePerfil
+        // Implementação do método SerializePerfil
         public async Task<string> SerializePerfil(PerfilDTO perfilDTO)
         {
-            var perfil = await _perfilRepository.GetByIdAsync(perfilDTO.Id.Value);
+            var perfil = await _perfilRepository.GetByIdWithIncludeAsync(perfilDTO.Id.Value, include:
+                query => query
+                .Include(p => p.PerfisPermissao)
+                .ThenInclude(p => p.Permissao)
+                );
             if (perfil == null) return string.Empty;
 
-            var systemURL = _configuration["systemURL"];
-            if (string.IsNullOrEmpty(systemURL))
-            {
-                Console.WriteLine("systemURL não configurado em appsettings.json. O RDF pode não ter URIs base.");
-                systemURL = "http://localhost:5000";
-            }
+            var systemURL = _configuration["systemURL"] ?? "http://localhost:5000";
 
             var g = new Graph();
             g.BaseUri = new Uri(systemURL);
 
-            // Registrar namespaces
-            g.NamespaceMap.AddNamespace("foaf", new Uri("http://xmlns.com/foaf/0.1/"));
+            // Adicionando o namespace da sua ontologia
+            g.NamespaceMap.AddNamespace("my_voc", _ontologyNamespaceUri);
+            // CORREÇÃO: Adicionando o namespace 'schema' ao grafo local
             g.NamespaceMap.AddNamespace("schema", new Uri("http://schema.org/"));
-            g.NamespaceMap.AddNamespace("ex", new Uri($"{systemURL}/ontology#"));
 
             // Sujeito: URI do perfil
             var perfilUri = g.CreateUriNode(new Uri($"{systemURL}/Perfil/{perfil.Id}.rdf"));
 
-            // Tipagem
-            g.Assert(perfilUri, g.CreateUriNode("rdf:type"), g.CreateUriNode("schema:Thing"));
+            // Tipagem mais específica: agora usamos a classe 'Perfil' da sua ontologia
+            var perfilClass = g.CreateUriNode("my_voc:Perfil");
+            g.Assert(perfilUri, g.CreateUriNode("rdf:type"), perfilClass);
 
-            // Propriedades do Perfil
-            g.Assert(perfilUri, g.CreateUriNode("schema:name"), g.CreateLiteralNode(perfil.Nome));
-            g.Assert(perfilUri, g.CreateUriNode("schema:description"), g.CreateLiteralNode(perfil.Descricao));
+            // Propriedades do Perfil (usando o vocabulário)
+            var hasNameProperty = g.CreateUriNode("my_voc:hasName");
+            var hasDescriptionProperty = g.CreateUriNode("my_voc:hasDescription");
+            var hasPermissionProperty = g.CreateUriNode("my_voc:hasPermission");
 
-            // Ligar com recurso da DBpedia, SOMENTE SE A DESCRIÇÃO EXISTIR
+            g.Assert(perfilUri, hasNameProperty, g.CreateLiteralNode(perfil.Nome));
+            g.Assert(perfilUri, hasDescriptionProperty, g.CreateLiteralNode(perfil.Descricao));
+
+            // Ligar com recurso da DBpedia
             if (!string.IsNullOrEmpty(perfil.Nome))
             {
-                // Verifica se existe uma descrição para o termo no DBpedia
                 var dbpediaDescription = await _externalDataService.ObterDescricaoDbpedia(perfil.Nome);
-
-                if (!string.IsNullOrEmpty(dbpediaDescription)) // Se a descrição for encontrada, o recurso existe
+                if (!string.IsNullOrEmpty(dbpediaDescription))
                 {
                     var dbpediaResourceUri = new Uri($"http://dbpedia.org/resource/{perfil.Nome.Replace(" ", "_")}");
                     g.Assert(perfilUri, g.CreateUriNode("schema:mentions"), g.CreateUriNode(dbpediaResourceUri));
                 }
             }
 
-            // Adicionar permissões como propriedades do perfil (código existente)
+            // Adicionar permissões como ações associadas ao perfil
             if (perfil.PerfisPermissao != null)
             {
                 foreach (var pp in perfil.PerfisPermissao)
                 {
                     if (pp.Permissao != null)
                     {
-                        var permissaoUri = g.CreateUriNode(new Uri($"{systemURL}/Perfil/permissoes/{pp.Permissao.Id}.rdf"));
-                        g.Assert(perfilUri, g.CreateUriNode("ex:hasPermission"), permissaoUri);
-                        g.Assert(permissaoUri, g.CreateUriNode("schema:name"), g.CreateLiteralNode(pp.Permissao.Nome));
-                        g.Assert(permissaoUri, g.CreateUriNode("ex:resource"), g.CreateLiteralNode(pp.Permissao.Recurso));
-                        g.Assert(permissaoUri, g.CreateUriNode("ex:action"), g.CreateLiteralNode(pp.Permissao.Acao));
+                        var permissaoUri = g.CreateUriNode(new Uri($"{systemURL}/Permissao/{pp.Permissao.Id}.rdf"));
+
+                        // Relação 1: O perfil tem uma permissão (usando a propriedade 'hasPermission' da sua ontologia)
+                        g.Assert(perfilUri, hasPermissionProperty, permissaoUri);
+
+                        // Descreve a permissão (usando o vocabulário)
+                        var permissaoClass = g.CreateUriNode("my_voc:Permissao");
+                        var hasResourceProperty = g.CreateUriNode("my_voc:hasResource");
+                        var hasActionProperty = g.CreateUriNode("my_voc:hasAction");
+
+                        g.Assert(permissaoUri, g.CreateUriNode("rdf:type"), permissaoClass);
+                        g.Assert(permissaoUri, hasNameProperty, g.CreateLiteralNode(pp.Permissao.Nome));
+                        g.Assert(permissaoUri, hasResourceProperty, g.CreateLiteralNode(pp.Permissao.Recurso));
+                        g.Assert(permissaoUri, hasActionProperty, g.CreateLiteralNode(pp.Permissao.Acao));
                     }
                 }
             }
 
-            // Serializar o grafo para uma string RDF (formato Turtle)
             var writer = new CompressingTurtleWriter();
             using (var stream = new MemoryStream())
             {
@@ -334,32 +367,35 @@ namespace UsersManager.Application.Services
             var g = new Graph();
             g.BaseUri = new Uri(systemURL);
 
-            // Registrar namespaces
-            g.NamespaceMap.AddNamespace("foaf", new Uri("http://xmlns.com/foaf/0.1/"));
+            // Adicionando o namespace da sua ontologia
+            g.NamespaceMap.AddNamespace("my_voc", _ontologyNamespaceUri);
+      
             g.NamespaceMap.AddNamespace("schema", new Uri("http://schema.org/"));
-            g.NamespaceMap.AddNamespace("ex", new Uri($"{systemURL}/ontology#")); // Seu namespace customizado
 
             // Sujeito: URI da permissão
             var permissaoUri = g.CreateUriNode(new Uri($"{systemURL}/Permissao/{permissaoDto.Id}"));
 
-            // Tipagem da permissão
-            // Você pode usar uma classe mais específica do Schema.org ou uma própria, como ex:Permission
-            g.Assert(permissaoUri, g.CreateUriNode("rdf:type"), g.CreateUriNode("schema:Action")); // Ou ex:Permission, schema:Permission
+            // Tipagem da permissão (usando a classe 'Permissao' da sua ontologia)
+            var permissaoClass = g.CreateUriNode("my_voc:Permissao");
+            g.Assert(permissaoUri, g.CreateUriNode("rdf:type"), permissaoClass);
 
-            // Propriedades da Permissão
-            g.Assert(permissaoUri, g.CreateUriNode("schema:name"), g.CreateLiteralNode(permissaoDto.Nome));
-            g.Assert(permissaoUri, g.CreateUriNode("ex:resource"), g.CreateLiteralNode(permissaoDto.Recurso));
-            g.Assert(permissaoUri, g.CreateUriNode("ex:actionType"), g.CreateLiteralNode(permissaoDto.Acao.ToString())); // Usando 'actionType' para evitar conflito com schema:Action
+            // Propriedades da Permissão (usando o vocabulário)
+            var hasNameProperty = g.CreateUriNode("my_voc:hasName");
+            var hasResourceProperty = g.CreateUriNode("my_voc:hasResource");
+            var hasActionProperty = g.CreateUriNode("my_voc:hasAction");
 
-            // Opcional: Ligar a um recurso DBpedia para o 'nome' ou 'recurso' da permissão
-            // Por exemplo, se o Recurso for "Usuário" ou "Documento", pode haver um link.
+            g.Assert(permissaoUri, hasNameProperty, g.CreateLiteralNode(permissaoDto.Nome));
+            g.Assert(permissaoUri, hasResourceProperty, g.CreateLiteralNode(permissaoDto.Recurso));
+            g.Assert(permissaoUri, hasActionProperty, g.CreateLiteralNode(permissaoDto.Acao.ToString()));
+
+            // Ligar a um recurso DBpedia para o 'recurso' da permissão
             if (!string.IsNullOrEmpty(permissaoDto.Recurso))
             {
                 var dbpediaDescriptionForResource = await _externalDataService.ObterDescricaoDbpedia(permissaoDto.Recurso);
                 if (!string.IsNullOrEmpty(dbpediaDescriptionForResource))
                 {
                     var dbpediaResourceUri = new Uri($"http://dbpedia.org/resource/{permissaoDto.Recurso.Replace(" ", "_")}");
-                    g.Assert(permissaoUri, g.CreateUriNode("schema:about"), g.CreateUriNode(dbpediaResourceUri)); // Exemplo de propriedade
+                    g.Assert(permissaoUri, g.CreateUriNode("schema:about"), g.CreateUriNode(dbpediaResourceUri));
                 }
             }
 

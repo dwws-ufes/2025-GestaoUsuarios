@@ -1,8 +1,10 @@
 <!-- /src/pages/DashBoardPage.vue-->
 <template>
   <q-page class="q-pa-md">
+    <!-- Primeira linha com os 5 cards de atalho em 5 colunas -->
     <div class="row q-col-gutter-md">
-      <div class="col-xs-12 col-sm-6 col-md-3">
+      <!-- Cartão de Usuários Ativos -->
+      <div class="col-xs-12 col-sm-6 col-md">
         <q-card flat bordered class="my-card">
           <q-card-section>
             <div class="text-h6">{{ $t('dashboardPage.activeUsers') }}</div>
@@ -17,7 +19,8 @@
         </q-card>
       </div>
 
-      <div class="col-xs-12 col-sm-6 col-md-3">
+      <!-- Cartão de Perfis Cadastrados -->
+      <div class="col-xs-12 col-sm-6 col-md">
         <q-card flat bordered class="my-card">
           <q-card-section>
             <div class="text-h6">{{ $t('dashboardPage.registeredProfiles') }}</div>
@@ -32,7 +35,8 @@
         </q-card>
       </div>
 
-      <div class="col-xs-12 col-sm-6 col-md-3">
+      <!-- Cartão de Permissões Totais -->
+      <div class="col-xs-12 col-sm-6 col-md">
         <q-card flat bordered class="my-card">
           <q-card-section>
             <div class="text-h6">{{ $t('dashboardPage.totalPermissions') }}</div>
@@ -46,7 +50,8 @@
         </q-card>
       </div>
 
-      <div class="col-xs-12 col-sm-6 col-md-3">
+      <!-- Cartão de Acessos de Hoje -->
+      <div class="col-xs-12 col-sm-6 col-md">
         <q-card flat bordered class="my-card">
           <q-card-section>
             <div class="text-h6">{{ $t('dashboardPage.accessesToday') }}</div>
@@ -61,7 +66,25 @@
         </q-card>
       </div>
 
-      <div class="col-xs-12 col-md-8">
+      <!-- Cartão de Ontologia do Projeto -->
+      <div class="col-xs-12 col-sm-6 col-md">
+        <q-card flat bordered class="my-card">
+          <q-card-section>
+            <div class="text-h6">{{ $t('dashboardPage.projectOntology') }}</div>
+            <div class="text-h5 text-bold text-positive">1</div>
+          </q-card-section>
+          <q-card-actions align="right">
+            <q-btn flat round icon="public" color="positive" @click="openOntology" />
+            <q-btn flat :label="$t('dashboardPage.viewOntology')" @click="openOntology" />
+          </q-card-actions>
+        </q-card>
+      </div>
+    </div>
+
+    <!-- Segunda linha com gráfico e lista de acessos falhos em proporção 3:2 -->
+    <div class="row q-col-gutter-md q-mt-md">
+      <!-- Gráfico de Acessos Diários (3/5 do espaço) -->
+      <div class="col-xs-12 col-md-7">
         <q-card flat bordered>
           <q-card-section>
             <div class="row items-center no-wrap">
@@ -105,7 +128,8 @@
         </q-card>
       </div>
 
-      <div class="col-xs-12 col-md-4">
+      <!-- Lista de Acessos com Falha (2/5 do espaço) -->
+      <div class="col-xs-12 col-md-5">
         <q-card flat bordered>
           <q-card-section>
             <div class="row items-center no-wrap">
@@ -264,7 +288,7 @@ const chartSeries = computed(() => {
   ]
 })
 
-// --- Métodos (mantidos como estão) ---
+// --- Métodos ---
 
 const goTo = (path) => {
   router.push(path)
@@ -372,6 +396,11 @@ const exportFailedAccessesCsv = () => {
     [t('dashboardPage.columnError')]: access.mensagemErro || '-',
   }))
   exportToCsv('acessos_falhos.csv', rows)
+}
+
+// Novo método para abrir o link da ontologia
+const openOntology = () => {
+  commonStore.openOntology()
 }
 
 // --- Lifecycle Hook ---

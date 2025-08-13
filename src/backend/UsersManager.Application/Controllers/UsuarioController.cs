@@ -199,7 +199,7 @@ namespace UsersManager.Application.Controllers
             if (usuario == null)
                 return NotFound();
 
-            var rdf = _usuarioService.SerializeUser(Task.FromResult<UsuarioDTO?>(usuario));
+            var rdf = await _usuarioService.SerializeUser(usuario);
             return Content(rdf, "text/turtle");
         }
 

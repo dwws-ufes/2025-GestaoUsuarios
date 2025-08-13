@@ -145,13 +145,14 @@
           >
             <q-tooltip>{{ t('usersPage.deleteUser') }}</q-tooltip>
           </q-btn>
+          <!-- Alteração 1: Icone e click do botão de RDF -->
           <q-btn
             flat
             round
             dense
-            icon="share"
+            icon="open_in_new"
             color="info"
-            @click="exportUserRdf(props.row)"
+            @click="openUserRdf(props.row)"
             :aria-label="t('usersPage.exportRdf')"
           >
             <q-tooltip>{{ t('usersPage.exportRdf') }}</q-tooltip>
@@ -219,13 +220,15 @@ const userColumns = [
   },
 ]
 
+// Alteração para garantir que a filtragem só ocorra se allUsers.value for um array
 const filteredUsers = computed(() => {
   if (!userFilter.value) {
-    return allUsers.value
+    return Array.isArray(allUsers.value) ? allUsers.value : []
   }
 
   const searchTerm = userFilter.value.toLowerCase()
-  return allUsers.value.filter(
+  const users = Array.isArray(allUsers.value) ? allUsers.value : []
+  return users.filter(
     (u) =>
       u.nome.toLowerCase().includes(searchTerm) ||
       u.email.toLowerCase().includes(searchTerm) ||
@@ -339,27 +342,19 @@ async function deleteUser(id) {
   }
 }
 
-// Nova função para exportar o usuário como RDF
-async function exportUserRdf(user) {
-  try {
-    $q.loading.show({ message: t('usersPage.loadingRdfExport') })
-    const rdfContent = await usuarioService.getUsuarioRdf(user.id) // Chamar o novo método
-    const blob = new Blob([rdfContent], { type: 'text/turtle' })
-    const url = URL.createObjectURL(blob)
-    const link = document.createElement('a')
-    link.href = url
-    link.setAttribute('download', `usuario_${user.id}.ttl`) // Nome do arquivo .ttl
-    document.body.appendChild(link)
-    link.click()
-    document.body.removeChild(link)
-    URL.revokeObjectURL(url)
-    $q.notify({ type: 'positive', message: t('usersPage.rdfExportSuccess') })
-  } catch (error) {
-    console.error('Error exporting user RDF:', error)
-    $q.notify({ type: 'negative', message: error.message || t('usersPage.errors.rdfExportFailed') })
-  } finally {
-    $q.loading.hide()
+// Alteração 2: Nova função para abrir o RDF por usuário em uma nova aba
+function openUserRdf(user) {
+  if (!user || !user.id) {
+    $q.notify({
+      type: 'negative',
+      message: t('usersPage.errors.invalidUserForRdf'),
+      icon: 'error',
+      timeout: 3000,
+    })
+    return
   }
+  // Chama a função do serviço que irá construir a URL e abrir a nova aba.
+  usuarioService.openUsuarioRdf(user.id)
 }
 
 watch(

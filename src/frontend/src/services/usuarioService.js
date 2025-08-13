@@ -53,6 +53,20 @@ const usuarioService = {
   },
 
   /**
+   * Abre a ontologia do projeto.
+   * @throws {Error} Se a requisição falhar.
+   */
+  async openOntologyLink() {
+    try {
+      window.open(api.getUri() + '/api/ontology/vocabulary', '_blank')
+      //this.openUsuarioRdf(0, true)
+    } catch (error) {
+      console.error(`Erro ao abrir link`, error)
+      throw error
+    }
+  },
+
+  /**
    * Cria um novo usuário.
    * @param {Object} userData - Dados do usuário a ser criado.
    * @returns {Promise<Object>} Usuário criado.
@@ -123,23 +137,76 @@ const usuarioService = {
   },
 
   /**
-   * Busca o registro RDF de um usuário por ID.
-   * @param {string} id - ID do usuário.
-   * @returns {Promise<string>} O conteúdo RDF do usuário.
-   * @throws {Error} Se a requisição falhar.
+   * Abre uma nova aba, busca o conteúdo RDF de um usuário e o exibe em uma
+   * página HTML com os URIs convertidos em links clicáveis.
+   * @param {number} id O ID do usuário.
+   * @param {boolean} showOntology Se true abre a ontologia do projeto.
    */
-  async getUsuarioRdf(id) {
+  async openUsuarioRdf(id, showOntology) {
     try {
-      // O backend retorna diretamente o conteúdo RDF como text/turtle
-      const response = await api.get(`${USUARIO_BASE_URL}/${id}.rdf`, {
-        headers: {
-          Accept: 'text/turtle', // Solicita o formato Turtle
-        },
+      // 1. Constrói a URL para o endpoint de RDF puro do usuário
+      const url =
+        showOntology === true
+          ? `${api.defaults.baseURL}/api/ontology/vocabulary`
+          : `${api.defaults.baseURL}${USUARIO_BASE_URL}/${id}.rdf`
+
+      // 2. Busca o conteúdo RDF em texto
+      const response = await fetch(url)
+      if (!response.ok) {
+        throw new Error(`Erro ao buscar o conteúdo RDF: ${response.statusText}`)
+      }
+      const rdfContent = await response.text()
+
+      // 3. Converte os URIs em links clicáveis antes de construir o HTML
+      // Expressão regular para encontrar URIs que começam com http ou https.
+      const uriRegex = /(https?:\/\/[^\s>]+)/g
+      const linkedText = rdfContent.replace(uriRegex, (url) => {
+        // Remove pontuações comuns no final do URI
+        const cleanUrl = url.replace(/[.,;]$/, '')
+        return `<a href="${cleanUrl}" target="_blank" rel="noopener noreferrer">${cleanUrl}</a>`
       })
-      return response.data
+
+      // 4. Constrói a página HTML completa com o conteúdo processado
+      const htmlContent = `
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RDV Viewer ${id}</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 20px; }
+        h1 { color: #333; }
+        pre { background-color: #f4f4f4; border: 1px solid #ddd; padding: 10px; white-space: pre-wrap; word-wrap: break-word; }
+        .rdf-container { margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <div class="rdf-container"><pre>${linkedText}</pre></div>
+</body>
+</html>`
+
+      // 5. Cria um Blob a partir do conteúdo HTML e uma URL temporária para ele
+      const blob = new Blob([htmlContent], { type: 'text/html' })
+      const blobUrl = URL.createObjectURL(blob)
+
+      // 6. Abre uma nova aba com a URL do Blob
+      const newTab = window.open(blobUrl, '_blank')
+      if (!newTab) {
+        console.error(
+          'Não foi possível abrir a nova aba. Verifique se o bloqueador de pop-ups está ativado.',
+        )
+        return
+      }
+
+      // IMPORTANTE: Revogar a URL do Blob após um curto período para liberar memória
+      // O evento 'unload' da nova aba é uma forma mais robusta de fazer isso.
+      newTab.addEventListener('unload', () => {
+        URL.revokeObjectURL(blobUrl)
+      })
     } catch (error) {
-      console.error(`Erro ao buscar RDF do usuário com ID ${id}:`, error)
-      throw error
+      console.error('Erro ao abrir o RDF do usuário:', error)
+      alert(`Não foi possível carregar o conteúdo RDF. Erro: ${error.message}`)
     }
   },
 }

@@ -56,14 +56,16 @@ export default {
     columnIP: 'IP',
     columnAgent: 'Agente',
     columnError: 'Erro',
-    columnDate: 'Data', // Nova chave para o cabeçalho do CSV do gráfico
+    columnDate: 'Data',
     accesses: 'Acessos',
     accessCount: 'Quantidade de acessos',
-    exportChartData: 'Exportar Dados do Gráfico para CSV', // Nova chave
-    exportFailedAccesses: 'Exportar Acessos com Falha para CSV', // Nova chave
-    noDataToExport: 'Nenhum dado para exportar.', // Nova chave
-    exportSuccess: 'Dados exportados com sucesso para {filename}!', // Nova chave
-    exportFailed: 'Falha ao exportar dados. Seu navegador pode não suportar esta funcionalidade.', // Nova chave
+    exportChartData: 'Exportar Dados do Gráfico para CSV',
+    exportFailedAccesses: 'Exportar Acessos com Falha para CSV',
+    noDataToExport: 'Nenhum dado para exportar.',
+    exportSuccess: 'Dados exportados com sucesso para {filename}!',
+    exportFailed: 'Falha ao exportar dados. Seu navegador pode não suportar esta funcionalidade.',
+    projectOntology: 'Ontologia do Projeto',
+    viewOntology: 'Visualizar',
   },
   usersPage: {
     title: 'Usuários',
@@ -72,14 +74,15 @@ export default {
     editUser: 'Editar Usuário',
     name: 'Nome',
     email: 'E-mail',
-    password: 'Senha', // <-- Novo
-    passwordOptional: 'Senha (opcional)', // <-- Novo
+    password: 'Senha',
+    passwordOptional: 'Senha (opcional)',
     profiles: 'Perfis',
     noProfilesAvailable: 'Nenhum perfil disponível',
     cancel: 'Cancelar',
     save: 'Salvar',
     loadingUsers: 'Carregando usuários...',
     loadingUser: 'Carregando usuário...',
+    loadingRdfExport: 'Gerando arquivo RDF...',
     userUpdated: 'Usuário atualizado com sucesso!',
     userCreated: 'Usuário criado com sucesso!',
     saveFailed: 'Falha ao salvar usuário.',
@@ -102,10 +105,11 @@ export default {
       nameRequired: 'O nome é obrigatório.',
       emailRequired: 'O e-mail é obrigatório.',
       emailInvalid: 'E-mail inválido.',
-      passwordRequired: 'A senha é obrigatória.', // <-- Novo
-      passwordMinLength: 'A senha deve ter pelo menos {length} caracteres.', // <-- Novo
+      passwordRequired: 'A senha é obrigatória.',
+      passwordMinLength: 'A senha deve ter pelo menos {length} caracteres.',
       profilesRequired: 'Pelo menos um perfil é obrigatório.',
       loadUserFailed: 'Falha ao carregar os dados do usuário.',
+      rdfExportFailed: 'Falha ao exportar o RDF.',
     },
   },
   columns: {
@@ -116,7 +120,6 @@ export default {
   },
 
   loginPage: {
-    // <-- NOVA SEÇÃO
     systemDescription: 'Sistema de Administração e Gestão de Usuários e Permissões',
     emailLabel: 'E-mail',
     passwordLabel: 'Senha',

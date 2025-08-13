@@ -473,7 +473,9 @@ export const useCommonStore = defineStore('common', {
         this.isDashboardLoading = false
       }
     },
-
+    async openOntology() {
+      usuarioService.openOntologyLink()
+    },
     async fetchDescricaoPerfil(nomePerfil) {
       try {
         const { descricao } = await usuarioService.getDescricaoCargo(
