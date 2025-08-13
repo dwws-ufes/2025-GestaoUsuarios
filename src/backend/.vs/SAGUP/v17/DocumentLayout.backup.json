@@ -3,28 +3,28 @@
   "WorkspaceRootPath": "C:\\Mestrado\\Programa\u00E7\u00E3oWeb\\git\\2025-GestaoUsuarios\\src\\backend\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{8EB29286-644B-4DC3-B506-97E0B4500FE5}|UsersManager.Application\\UsersManager.Application.csproj|c:\\mestrado\\programa\u00E7\u00E3oweb\\git\\2025-gestaousuarios\\src\\backend\\usersmanager.application\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8EB29286-644B-4DC3-B506-97E0B4500FE5}|UsersManager.Application\\UsersManager.Application.csproj|solutionrelative:usersmanager.application\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8EB29286-644B-4DC3-B506-97E0B4500FE5}|UsersManager.Application\\UsersManager.Application.csproj|c:\\mestrado\\programa\u00E7\u00E3oweb\\git\\2025-gestaousuarios\\src\\backend\\usersmanager.application\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{8EB29286-644B-4DC3-B506-97E0B4500FE5}|UsersManager.Application\\UsersManager.Application.csproj|solutionrelative:usersmanager.application\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8EB29286-644B-4DC3-B506-97E0B4500FE5}|UsersManager.Application\\UsersManager.Application.csproj|c:\\mestrado\\programa\u00E7\u00E3oweb\\git\\2025-gestaousuarios\\src\\backend\\usersmanager.application\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{8EB29286-644B-4DC3-B506-97E0B4500FE5}|UsersManager.Application\\UsersManager.Application.csproj|solutionrelative:usersmanager.application\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+      "AbsoluteMoniker": "D:0:0:{8EB29286-644B-4DC3-B506-97E0B4500FE5}|UsersManager.Application\\UsersManager.Application.csproj|c:\\mestrado\\programa\u00E7\u00E3oweb\\git\\2025-gestaousuarios\\src\\backend\\usersmanager.application\\services\\externaldataservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8EB29286-644B-4DC3-B506-97E0B4500FE5}|UsersManager.Application\\UsersManager.Application.csproj|solutionrelative:usersmanager.application\\services\\externaldataservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{8EB29286-644B-4DC3-B506-97E0B4500FE5}|UsersManager.Application\\UsersManager.Application.csproj|c:\\mestrado\\programa\u00E7\u00E3oweb\\git\\2025-gestaousuarios\\src\\backend\\usersmanager.application\\controllers\\usuariocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{8EB29286-644B-4DC3-B506-97E0B4500FE5}|UsersManager.Application\\UsersManager.Application.csproj|solutionrelative:usersmanager.application\\controllers\\usuariocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{8EB29286-644B-4DC3-B506-97E0B4500FE5}|UsersManager.Application\\UsersManager.Application.csproj|c:\\mestrado\\programa\u00E7\u00E3oweb\\git\\2025-gestaousuarios\\src\\backend\\usersmanager.application\\controllers\\perfilcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8EB29286-644B-4DC3-B506-97E0B4500FE5}|UsersManager.Application\\UsersManager.Application.csproj|solutionrelative:usersmanager.application\\controllers\\perfilcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{8EB29286-644B-4DC3-B506-97E0B4500FE5}|UsersManager.Application\\UsersManager.Application.csproj|c:\\mestrado\\programa\u00E7\u00E3oweb\\git\\2025-gestaousuarios\\src\\backend\\usersmanager.application\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{8EB29286-644B-4DC3-B506-97E0B4500FE5}|UsersManager.Application\\UsersManager.Application.csproj|solutionrelative:usersmanager.application\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{8EB29286-644B-4DC3-B506-97E0B4500FE5}|UsersManager.Application\\UsersManager.Application.csproj|c:\\mestrado\\programa\u00E7\u00E3oweb\\git\\2025-gestaousuarios\\src\\backend\\usersmanager.application\\services\\externaldataservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8EB29286-644B-4DC3-B506-97E0B4500FE5}|UsersManager.Application\\UsersManager.Application.csproj|solutionrelative:usersmanager.application\\services\\externaldataservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{8EB29286-644B-4DC3-B506-97E0B4500FE5}|UsersManager.Application\\UsersManager.Application.csproj|c:\\mestrado\\programa\u00E7\u00E3oweb\\git\\2025-gestaousuarios\\src\\backend\\usersmanager.application\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8EB29286-644B-4DC3-B506-97E0B4500FE5}|UsersManager.Application\\UsersManager.Application.csproj|solutionrelative:usersmanager.application\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8EB29286-644B-4DC3-B506-97E0B4500FE5}|UsersManager.Application\\UsersManager.Application.csproj|c:\\mestrado\\programa\u00E7\u00E3oweb\\git\\2025-gestaousuarios\\src\\backend\\usersmanager.application\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{8EB29286-644B-4DC3-B506-97E0B4500FE5}|UsersManager.Application\\UsersManager.Application.csproj|solutionrelative:usersmanager.application\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8EB29286-644B-4DC3-B506-97E0B4500FE5}|UsersManager.Application\\UsersManager.Application.csproj|c:\\mestrado\\programa\u00E7\u00E3oweb\\git\\2025-gestaousuarios\\src\\backend\\usersmanager.application\\controllers\\perfilcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8EB29286-644B-4DC3-B506-97E0B4500FE5}|UsersManager.Application\\UsersManager.Application.csproj|solutionrelative:usersmanager.application\\controllers\\perfilcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{8EB29286-644B-4DC3-B506-97E0B4500FE5}|UsersManager.Application\\UsersManager.Application.csproj|c:\\mestrado\\programa\u00E7\u00E3oweb\\git\\2025-gestaousuarios\\src\\backend\\usersmanager.application\\services\\perfilservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -174,20 +174,7 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "appsettings.Development.json",
-              "DocumentMoniker": "C:\\Mestrado\\Programa\u00E7\u00E3oWeb\\git\\2025-GestaoUsuarios\\src\\backend\\UsersManager.Application\\appsettings.Development.json",
-              "RelativeDocumentMoniker": "UsersManager.Application\\appsettings.Development.json",
-              "ToolTip": "C:\\Mestrado\\Programa\u00E7\u00E3oWeb\\git\\2025-GestaoUsuarios\\src\\backend\\UsersManager.Application\\appsettings.Development.json",
-              "RelativeToolTip": "UsersManager.Application\\appsettings.Development.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-08-13T10:24:57.604Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 1,
               "Title": "UsuarioController.cs",
               "DocumentMoniker": "C:\\Mestrado\\Programa\u00E7\u00E3oWeb\\git\\2025-GestaoUsuarios\\src\\backend\\UsersManager.Application\\Controllers\\UsuarioController.cs",
               "RelativeDocumentMoniker": "UsersManager.Application\\Controllers\\UsuarioController.cs",
@@ -200,7 +187,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "PerfilController.cs",
               "DocumentMoniker": "C:\\Mestrado\\Programa\u00E7\u00E3oWeb\\git\\2025-GestaoUsuarios\\src\\backend\\UsersManager.Application\\Controllers\\PerfilController.cs",
               "RelativeDocumentMoniker": "UsersManager.Application\\Controllers\\PerfilController.cs",
@@ -213,7 +200,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "appsettings.json",
               "DocumentMoniker": "C:\\Mestrado\\Programa\u00E7\u00E3oWeb\\git\\2025-GestaoUsuarios\\src\\backend\\UsersManager.Application\\appsettings.json",
               "RelativeDocumentMoniker": "UsersManager.Application\\appsettings.json",
@@ -226,28 +213,41 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 3,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Mestrado\\Programa\u00E7\u00E3oWeb\\git\\2025-GestaoUsuarios\\src\\backend\\UsersManager.Application\\Program.cs",
               "RelativeDocumentMoniker": "UsersManager.Application\\Program.cs",
               "ToolTip": "C:\\Mestrado\\Programa\u00E7\u00E3oWeb\\git\\2025-GestaoUsuarios\\src\\backend\\UsersManager.Application\\Program.cs",
               "RelativeToolTip": "UsersManager.Application\\Program.cs",
-              "ViewState": "AgIAADwAAAAAAAAAAAAWwEYAAAAbAAAAAAAAAA==",
+              "ViewState": "AgIAADwAAAAAAAAAAAAWwEUAAAA0AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-28T13:32:45.808Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 0,
               "Title": "ExternalDataService.cs",
               "DocumentMoniker": "C:\\Mestrado\\Programa\u00E7\u00E3oWeb\\git\\2025-GestaoUsuarios\\src\\backend\\UsersManager.Application\\Services\\ExternalDataService.cs",
               "RelativeDocumentMoniker": "UsersManager.Application\\Services\\ExternalDataService.cs",
               "ToolTip": "C:\\Mestrado\\Programa\u00E7\u00E3oWeb\\git\\2025-GestaoUsuarios\\src\\backend\\UsersManager.Application\\Services\\ExternalDataService.cs",
               "RelativeToolTip": "UsersManager.Application\\Services\\ExternalDataService.cs",
-              "ViewState": "AgIAAFMAAAAAAAAAAAAowF8AAAAcAAAAAAAAAA==",
+              "ViewState": "AgIAAFcAAAAAAAAAAAAowCAAAAAaAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-07-25T13:00:59.028Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "appsettings.Development.json",
+              "DocumentMoniker": "C:\\Mestrado\\Programa\u00E7\u00E3oWeb\\git\\2025-GestaoUsuarios\\src\\backend\\UsersManager.Application\\appsettings.Development.json",
+              "RelativeDocumentMoniker": "UsersManager.Application\\appsettings.Development.json",
+              "ToolTip": "C:\\Mestrado\\Programa\u00E7\u00E3oWeb\\git\\2025-GestaoUsuarios\\src\\backend\\UsersManager.Application\\appsettings.Development.json",
+              "RelativeToolTip": "UsersManager.Application\\appsettings.Development.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-08-13T10:24:57.604Z",
               "EditorCaption": ""
             },
             {
